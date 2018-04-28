@@ -17,7 +17,7 @@ things that are setup in this project.
 - Just rename the `sample` folder to whatever your project is
 - Start coding.
 
-# Example of "forking" this template repo into `my_new_sample` repo.
+# Example of "forking" this template repo into `my_new_sample` repo
 1. Go to github.com and create a new empty repo called `my_new_sample`.
 2. Clone this new repo, by using Terminal go to your `~/github` folder and type `git clone https://github.com/nazmulidris/my_new_sample.git`
 3. Then add an upstream remote to this repo, by using Terminal. Go to your `~/github/my_new_sample` folder and type `git remote add upstream https://github.com/nazmulidris/app_template_kotlin.git`
