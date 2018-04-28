@@ -32,3 +32,5 @@ cd my_new_sample
 git remote add upstream https://github.com/nazmulidris/app_template_kotlin.git
 git pull upstream master
 ```
+
+Note - when this template is updated, you can go to you new repo (eg: `my_new_sample`) in Terminal and type `git pull upstream master` and handle the merge conflicts, to update your project to latest gradle configuration and dependencies.
