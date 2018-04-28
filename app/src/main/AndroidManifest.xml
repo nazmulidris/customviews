@@ -15,7 +15,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="engineering.uxd.example.sample">
+    package="engineering.uxd.example.customviews">
 
     <application
         android:allowBackup="true"
@@ -24,7 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="engineering.uxd.example.customviews.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

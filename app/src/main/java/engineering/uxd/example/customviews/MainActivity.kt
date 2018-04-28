@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package engineering.uxd.example.sample
+package engineering.uxd.example.customviews
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
