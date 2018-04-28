@@ -20,6 +20,15 @@ things that are setup in this project.
 # Example of "forking" this template repo into `my_new_sample` repo
 1. Go to [github.com/new](https://github.com/new) and create a new empty repo called `my_new_sample`.
 2. Clone this new repo. Use Terminal to go to your `~/github` folder and type `git clone https://github.com/nazmulidris/my_new_sample.git`
-3. Then add an upstream remote to this repo, by using Terminal. Go to your `~/github/my_new_sample` folder and type `git remote add upstream https://github.com/nazmulidris/app_template_kotlin.git`
+3. Add an upstream remote to this repo, by using Terminal. Go to your `~/github/my_new_sample` folder and type `git remote add upstream https://github.com/nazmulidris/app_template_kotlin.git`
 4. Pull from the original repo by typing `git pull upstream master`.
-5. Then you can just push this into your new repo by typing `git push origin master`.
+5. Now you can just push this into your new repo by typing `git push origin master`.
+
+```
+# After creating your new and empty my_new_sample repo on github.com
+cd ~/github/
+git clone https://github.com/nazmulidris/my_new_sample.git
+cd my_new_sample
+git remote add upstream https://github.com/nazmulidris/app_template_kotlin.git
+git pull upstream master
+```
