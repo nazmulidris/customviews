@@ -13,6 +13,6 @@ things that are setup in this project.
 
 # Usage instructions
 
-- Fork this repo
+- "Fork" this repo using [these instructions](https://www.tilcode.com/fork-your-own-repo-on-github/).
 - Just rename the `sample` folder to whatever your project is
 - Start coding.
