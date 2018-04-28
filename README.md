@@ -34,7 +34,7 @@ Notes
 - More info on forking your own repo [here](https://www.tilcode.com/fork-your-own-repo-on-github/).
 
 ## 2. Refactor the template project to match `my_new_sample`
-- Just rename the `sample` folder to whatever your project is which will update `AndroidManifest.xml`
-- Go into the build.gradle for the `app` module, and update the `applicationId` w/ the new name, eg `engineering.uxd.example.my_new_sample`.
+- In Android Studio, just rename the `sample` folder to whatever your project is (eg: `my_new_sample`) which will update `AndroidManifest.xml`
+- Go into the `build.gradle` for the `app` module, and update the `applicationId` w/ the new name, eg `engineering.uxd.example.my_new_sample`.
 
 ## 3. Start coding! 
