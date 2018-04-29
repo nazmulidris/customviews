@@ -18,12 +18,20 @@ package engineering.uxd.example.customviews
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        button_custom_drawable.onClick { toast("drawable") }
+        button_custom_view.onClick { toast("view") }
+        button_custom_layoutmanager.onClick { toast("layoutmanager") }
+        button_custom_scrolling.onClick { toast("scrolling") }
 
     }
 }
