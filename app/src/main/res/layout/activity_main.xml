@@ -19,15 +19,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="engineering.uxd.example.customviews.MainActivity">
+    tools:context="engineering.uxd.example.customviews.MainActivity"
+    tools:layout_editor_absoluteY="81dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:text="Custom Drawable"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.9"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/button_custom_drawable"
+        tools:layout_editor_absoluteY="93dp"
+        tools:layout_editor_absoluteX="19dp" />
+
+    <Button
+        android:text="Custom View"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.9"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_custom_view"
+        tools:layout_editor_absoluteY="149dp"
+        tools:layout_editor_absoluteX="19dp" />
+
+    <Button
+        android:text="Custom LayoutManager"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.9"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_custom_layoutmanager"
+        tools:layout_editor_absoluteY="205dp"
+        tools:layout_editor_absoluteX="19dp" />
+
+    <Button
+        android:text="Custom Scrolling"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.9"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_custom_scrolling"
+        tools:layout_editor_absoluteY="261dp"
+        tools:layout_editor_absoluteX="19dp" />
 
 </android.support.constraint.ConstraintLayout>
