@@ -9,4 +9,4 @@ This project is about the exploration of custom views. It explores the following
 
 # Reference info
 - [ConstraintLayout](https://developer.android.com/reference/android/support/constraint/ConstraintLayout#CenteringPositioning)
-- 
+- [ConstraintLayout Chains](https://medium.com/@nomanr/constraintlayout-chains-4f3b58ea15bb)
