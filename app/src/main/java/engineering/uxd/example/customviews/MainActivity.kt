@@ -19,8 +19,9 @@ package engineering.uxd.example.customviews
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.sdk25.coroutines.onClick
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.singleTop
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,10 +29,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button_custom_drawable.onClick { toast("drawable") }
-        button_custom_view.onClick { toast("view") }
-        button_custom_layoutmanager.onClick { toast("layoutmanager") }
-        button_custom_scrolling.onClick { toast("scrolling") }
+        button_custom_drawable.onClick {
+            startActivity(intentFor<CustomDrawableActivity>().singleTop())
+        }
+
+        button_custom_view.onClick {
+            startActivity(intentFor<CustomViewActivity>().singleTop())
+        }
+
+        button_custom_layoutmanager.onClick {
+            startActivity(intentFor<CustomLayoutManager>().singleTop())
+        }
+
+        button_custom_scrolling.onClick {
+            startActivity(intentFor<CustomScrolling>().singleTop())
+        }
 
     }
 }
