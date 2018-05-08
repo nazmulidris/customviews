@@ -2,6 +2,7 @@ package engineering.uxd.example.customviews
 
 import android.graphics.Canvas
 import android.graphics.ColorFilter
+import android.graphics.Paint
 import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -19,17 +20,27 @@ class CustomDrawableActivity : AppCompatActivity() {
         attachDrawable()
     }
 
-    fun attachDrawable() {
+    private fun attachDrawable() {
         imageView.backgroundDrawable = SimpleTextDrawable()
     }
+
 }
 
 data class Config(val text: String = "Hello World!",
-                  val color: Long = 0xFF311B92)
+                  val color: Int = 0xFF311B92.toInt(),
+                  val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
+                  val size: Float = 100f)
 
 class SimpleTextDrawable : Drawable(), AnkoLogger {
 
     val config = Config()
+
+    init {
+        with(config) {
+            paint.color = color
+            paint.textSize = size
+        }
+    }
 
     override fun draw(canvas: Canvas) {
         info { "draw something" }
@@ -39,7 +50,7 @@ class SimpleTextDrawable : Drawable(), AnkoLogger {
     }
 
     override fun getOpacity(): Int {
-        return PixelFormat.OPAQUE
+        return PixelFormat.TRANSLUCENT
     }
 
     override fun setColorFilter(colorFilter: ColorFilter?) {

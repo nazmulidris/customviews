@@ -17,7 +17,8 @@
         android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:fontFamily="@font/noto_serif" />
 
     <ImageView
         android:id="@+id/imageView"
