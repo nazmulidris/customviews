@@ -26,10 +26,12 @@ class CustomDrawableActivity : AppCompatActivity() {
 
 }
 
-data class Config(val text: String = "Hello World!",
-                  val color: Int = 0xFF311B92.toInt(),
-                  val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
-                  val size: Float = 100f)
+data class Config(val text_content: String = "Hello World!",
+                  val text_color: Int = 0xFF311B92.toInt(),
+                  val text_paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
+                  val size: Float = 100f,
+                  val bg_paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
+                  val bg_color: Int = 0xABABAB92.toInt())
 
 class SimpleTextDrawable : Drawable(), AnkoLogger {
 
@@ -37,13 +39,36 @@ class SimpleTextDrawable : Drawable(), AnkoLogger {
 
     init {
         with(config) {
-            paint.color = color
-            paint.textSize = size
+            text_paint.color = text_color
+            text_paint.textSize = size
+            bg_paint.color = bg_color
+        }
+    }
+
+    override fun getIntrinsicHeight(): Int {
+        val height = config.text_paint.textSize.toInt()
+        info { "intrinsic height= $height" }
+        return height
+    }
+
+    override fun getIntrinsicWidth(): Int {
+        with(config) {
+            val width = text_paint.measureText(text_content).toInt()
+            info { "intrinsic width= $width" }
+            return width
         }
     }
 
     override fun draw(canvas: Canvas) {
-        info { "draw something" }
+        info {
+            "draw something in bounds: " +
+                    "width=${bounds.right - bounds.left}, " +
+                    "height=${bounds.bottom - bounds.top}"
+        }
+        with(config) {
+            canvas.drawRect(bounds, bg_paint)
+            canvas.drawText(text_content, 0F, size, text_paint)
+        }
     }
 
     override fun setAlpha(alpha: Int) {
