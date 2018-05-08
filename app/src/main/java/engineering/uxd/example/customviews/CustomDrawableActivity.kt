@@ -29,7 +29,7 @@ class CustomDrawableActivity : AppCompatActivity() {
 data class Config(val text_content: String = "Hello World!",
                   val text_color: Int = 0xFF311B92.toInt(),
                   val text_paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
-                  val size: Float = 100f,
+                  val text_size: Float = 100f,
                   val bg_paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
                   val bg_color: Int = 0xABABAB92.toInt())
 
@@ -40,7 +40,7 @@ class SimpleTextDrawable : Drawable(), AnkoLogger {
     init {
         with(config) {
             text_paint.color = text_color
-            text_paint.textSize = size
+            text_paint.textSize = text_size
             bg_paint.color = bg_color
         }
     }
@@ -67,11 +67,14 @@ class SimpleTextDrawable : Drawable(), AnkoLogger {
         }
         with(config) {
             canvas.drawRect(bounds, bg_paint)
-            canvas.drawText(text_content, 0F, size, text_paint)
+            canvas.drawText(text_content, 0F, text_size, text_paint)
         }
     }
 
     override fun setAlpha(alpha: Int) {
+        config.text_paint.alpha = alpha
+        config.bg_paint.alpha = alpha
+        invalidateSelf()
     }
 
     override fun getOpacity(): Int {
