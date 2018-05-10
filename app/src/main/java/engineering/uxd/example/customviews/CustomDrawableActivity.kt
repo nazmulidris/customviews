@@ -62,8 +62,8 @@ class SimpleTextDrawable : Drawable(), AnkoLogger {
     override fun draw(canvas: Canvas) {
         info {
             "draw something in bounds: " +
-                    "width=${bounds.right - bounds.left}, " +
-                    "height=${bounds.bottom - bounds.top}"
+                    "\n\tw=${bounds.right - bounds.left}, h=${bounds.bottom - bounds.top}" +
+                    "\n\tiW=${intrinsicWidth}, iH=${intrinsicHeight}"
         }
         with(config) {
             canvas.drawRect(bounds, bg_paint)
