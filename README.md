@@ -9,7 +9,7 @@ This project is about the exploration of custom views. It explores the following
 
 ## Custom Drawable
 The `ImageView` has it's background set to `SimpleTextDrawable` and it's height and width are
-not explicitly set. The layout params of `wrap_content` is set for both the height and width.
+not explicitly set; the layout params of `wrap_content` is set for both the height and width.
 ```kotlin
 imageView.backgroundDrawable = SimpleTextDrawable()
 ```
