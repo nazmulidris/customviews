@@ -33,3 +33,4 @@ todo
 - [ConstraintLayout Chains Tutorial](https://medium.com/@nomanr/constraintlayout-chains-4f3b58ea15bb)
 - [Video on Android Custom Views](http://oredev.org/2017/sessions/measure-layout-draw-repeat-custom-views-and-viewgroups)
 - [Book on Android Custom Views, Drawables, LayoutManagers, Scrolling](https://play.google.com/books/reader?id=dnr_CgAAQBAJ&printsec=frontcover&output=reader&hl=en&pg=GBS.PT400)
+- [Video about Android UI rendering from Google IO 18](https://youtu.be/zdQRIYOST64)
