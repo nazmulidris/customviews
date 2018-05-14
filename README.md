@@ -34,3 +34,4 @@ todo
 - [Video on Android Custom Views](http://oredev.org/2017/sessions/measure-layout-draw-repeat-custom-views-and-viewgroups)
 - [Book on Android Custom Views, Drawables, LayoutManagers, Scrolling](https://play.google.com/books/reader?id=dnr_CgAAQBAJ&printsec=frontcover&output=reader&hl=en&pg=GBS.PT400)
 - [Video about Android UI rendering from Google IO 18](https://youtu.be/zdQRIYOST64)
+- [Tutorial on creating custom views](https://www.raywenderlich.com/175645/android-custom-view-tutorial)
