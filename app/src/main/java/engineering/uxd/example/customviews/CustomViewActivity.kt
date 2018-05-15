@@ -17,10 +17,7 @@
 package engineering.uxd.example.customviews
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
@@ -96,6 +93,16 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     }
 
     private fun drawMouth(canvas: Canvas) {
+        val mouthPath = Path().apply {
+            moveTo(size * 0.22f, size * 0.7f)
+            quadTo(size * 0.50f, size * 0.80f, size * 0.78f, size * 0.70f)
+            quadTo(size * 0.50f, size * 0.90f, size * 0.22f, size * 0.70f)
+        }
+        with(paint) {
+            color = mouthColor
+            style = Paint.Style.FILL
+            canvas.drawPath(mouthPath, this)
+        }
     }
 
     private fun drawEyes(canvas: Canvas) {
