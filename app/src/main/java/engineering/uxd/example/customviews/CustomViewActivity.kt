@@ -17,6 +17,9 @@
 package engineering.uxd.example.customviews
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
@@ -31,5 +34,60 @@ class CustomViewActivity : AppCompatActivity() {
 }
 
 class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, attrs) {
+
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    private var faceColor = Color.YELLOW
+    private var eyesColor = Color.BLACK
+    private var mouthColor = Color.BLACK
+
+    private var borderColor = Color.GRAY
+    private var borderWidth = 16f
+
+    private var boundsColor = Color.GREEN
+    private var boundsWidth = 16f
+
+    private var size = 320
+
+    override fun onDraw(canvas: Canvas) {
+        drawFaceBackground(canvas)
+        drawEyes(canvas)
+        drawMouth(canvas)
+    }
+
+    private fun drawMouth(canvas: Canvas) {
+    }
+
+    private fun drawEyes(canvas: Canvas) {
+    }
+
+    private fun drawFaceBackground(canvas: Canvas) {
+
+        // Draw bounds
+        paint.color = boundsColor
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = boundsWidth
+        paint.alpha = 100
+        canvas.drawRect(
+                0f, 0f,
+                width.toFloat(), height.toFloat(),
+                paint)
+
+        // Draw the face
+        paint.alpha = 255
+        paint.color = faceColor
+        paint.style = Paint.Style.FILL
+        val radius = size / 2f
+        val cx = size / 2f
+        val cy = cx
+        canvas.drawCircle(cx, cy, radius, paint)
+
+        // Draw the border around the face
+        paint.color = borderColor
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = borderWidth
+        canvas.drawCircle(cx, cy, radius - borderWidth / 2f, paint)
+
+    }
 
 }
