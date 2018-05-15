@@ -50,19 +50,13 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     private var size = 320
 
     override fun onDraw(canvas: Canvas) {
+        drawBounds(canvas)
         drawFaceBackground(canvas)
         drawEyes(canvas)
         drawMouth(canvas)
     }
 
-    private fun drawMouth(canvas: Canvas) {
-    }
-
-    private fun drawEyes(canvas: Canvas) {
-    }
-
-    private fun drawFaceBackground(canvas: Canvas) {
-
+    private fun drawBounds(canvas: Canvas) {
         // Draw bounds
         paint.color = boundsColor
         paint.style = Paint.Style.STROKE
@@ -72,7 +66,9 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
                 0f, 0f,
                 width.toFloat(), height.toFloat(),
                 paint)
+    }
 
+    private fun drawFaceBackground(canvas: Canvas) {
         // Draw the face
         paint.alpha = 255
         paint.color = faceColor
@@ -87,7 +83,12 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = borderWidth
         canvas.drawCircle(cx, cy, radius - borderWidth / 2f, paint)
+    }
 
+    private fun drawMouth(canvas: Canvas) {
+    }
+
+    private fun drawEyes(canvas: Canvas) {
     }
 
 }
