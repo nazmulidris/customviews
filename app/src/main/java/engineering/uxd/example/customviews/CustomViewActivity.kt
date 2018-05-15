@@ -20,6 +20,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.RectF
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
@@ -41,6 +42,8 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     private var eyesColor = Color.BLACK
     private var mouthColor = Color.BLACK
 
+    private var roundedRectRadius = 20f
+
     private var borderColor = Color.GRAY
     private var borderWidth = 16f
 
@@ -58,37 +61,56 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
     private fun drawBounds(canvas: Canvas) {
         // Draw bounds
-        paint.color = boundsColor
-        paint.style = Paint.Style.STROKE
-        paint.strokeWidth = boundsWidth
-        paint.alpha = 100
-        canvas.drawRect(
-                0f, 0f,
-                width.toFloat(), height.toFloat(),
-                paint)
+        with(paint) {
+            color = boundsColor
+            style = Paint.Style.STROKE
+            strokeWidth = boundsWidth
+            alpha = 100
+            canvas.drawRect(
+                    0f, 0f,
+                    width.toFloat(), height.toFloat(),
+                    this)
+            alpha = 255
+        }
     }
 
     private fun drawFaceBackground(canvas: Canvas) {
-        // Draw the face
-        paint.alpha = 255
-        paint.color = faceColor
-        paint.style = Paint.Style.FILL
         val radius = size / 2f
         val cx = size / 2f
         val cy = cx
-        canvas.drawCircle(cx, cy, radius, paint)
+
+        // Draw the face
+        with(paint) {
+            color = faceColor
+            style = Paint.Style.FILL
+            canvas.drawCircle(cx, cy, radius, this)
+        }
 
         // Draw the border around the face
-        paint.color = borderColor
-        paint.style = Paint.Style.STROKE
-        paint.strokeWidth = borderWidth
-        canvas.drawCircle(cx, cy, radius - borderWidth / 2f, paint)
+        with(paint) {
+            color = borderColor
+            style = Paint.Style.STROKE
+            strokeWidth = borderWidth
+            canvas.drawCircle(cx, cy, radius - borderWidth / 2f, this)
+        }
     }
 
     private fun drawMouth(canvas: Canvas) {
     }
 
     private fun drawEyes(canvas: Canvas) {
+        with(paint) {
+            color = eyesColor
+            style = Paint.Style.FILL
+            val leftEyeRect = RectF(
+                    size * 0.32f, size * 0.23f,
+                    size * 0.43f, size * 0.5f)
+            val rightEyeRect = RectF(
+                    size * 0.57f, size * 0.23f,
+                    size * 0.68f, size * 0.5f)
+            canvas.drawRoundRect(leftEyeRect, roundedRectRadius, roundedRectRadius, this)
+            canvas.drawRoundRect(rightEyeRect, roundedRectRadius, roundedRectRadius, this)
+        }
     }
 
 }
