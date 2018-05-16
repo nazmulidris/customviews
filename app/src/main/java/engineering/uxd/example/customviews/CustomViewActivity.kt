@@ -39,7 +39,7 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     private var eyesColor = Color.BLACK
     private var mouthColor = Color.BLACK
 
-    private var roundedRectRadius = 20f
+    private var eyesRoundedRectRadius = 20f
 
     private var borderColor = Color.GRAY
     private var borderWidth = 16f
@@ -49,7 +49,7 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
     private var size: Int = 0
 
-    // Measure functions
+    // Measure functions (set size)
 
     /**
      * Set the measured width and height to the max amount of space available
@@ -62,7 +62,7 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
         setMeasuredDimension(size, size)
     }
 
-    // Drawing functions
+    // Drawing functions (based on size)
 
     override fun onDraw(canvas: Canvas) {
         drawBounds(canvas)
@@ -130,8 +130,8 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
             val rightEyeRect = RectF(
                     size * 0.57f, size * 0.23f,
                     size * 0.68f, size * 0.5f)
-            canvas.drawRoundRect(leftEyeRect, roundedRectRadius, roundedRectRadius, this)
-            canvas.drawRoundRect(rightEyeRect, roundedRectRadius, roundedRectRadius, this)
+            canvas.drawRoundRect(leftEyeRect, eyesRoundedRectRadius, eyesRoundedRectRadius, this)
+            canvas.drawRoundRect(rightEyeRect, eyesRoundedRectRadius, eyesRoundedRectRadius, this)
         }
     }
 
