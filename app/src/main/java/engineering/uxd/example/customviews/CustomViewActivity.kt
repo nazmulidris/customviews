@@ -47,7 +47,22 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     private var boundsColor = Color.GREEN
     private var boundsWidth = 16f
 
-    private var size = 320
+    private var size: Int = 0
+
+    // Measure functions
+
+    /**
+     * Set the measured width and height to the max amount of space available
+     * for this view (as provided by the layout manager), while preserving the
+     * aspect ratio of the view.
+     */
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        size = Math.min(measuredWidth, measuredHeight)
+        setMeasuredDimension(size, size)
+    }
+
+    // Drawing functions
 
     override fun onDraw(canvas: Canvas) {
         drawBounds(canvas)
