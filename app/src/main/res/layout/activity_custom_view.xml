@@ -42,11 +42,15 @@
         android:id="@+id/happyFaceView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        app:borderColor="@android:color/white"
+        app:borderColor="@android:color/holo_orange_dark"
         app:eyesColor="@android:color/white"
         app:faceColor="@android:color/holo_red_dark"
         app:mouthColor="@android:color/white"
-        app:emotion="happy" />
+        app:boundsColor="@android:color/white"
+        app:eyesRoundedRectRadius="8dp"
+        app:borderWidth="2dp"
+        app:boundsWidth="2dp"
+        app:emotion="sad" />
 
     <engineering.uxd.example.customviews.EmotionalFaceView
         android:layout_width="@dimen/face_button_width"
@@ -58,6 +62,6 @@
         app:eyesColor="@android:color/black"
         app:faceColor="@android:color/holo_orange_light"
         app:mouthColor="@android:color/black"
-        app:emotion="sad" />
+        app:emotion="happy" />
 
 </RelativeLayout>

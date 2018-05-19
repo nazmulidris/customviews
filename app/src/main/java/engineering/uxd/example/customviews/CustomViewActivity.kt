@@ -58,12 +58,31 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     // Get styling from XML attributes
 
     init {
-        val array = context.theme.obtainStyledAttributes(
+        with(context.obtainStyledAttributes(
                 attrs, R.styleable.EmotionalFaceViewStyles, 0, 0)
-        try {
-            emotion = array.getInt(R.styleable.EmotionalFaceViewStyles_emotion, emotion)
-        } finally {
-            array.recycle()
+        ) {
+            try {
+
+                emotion = getInt(R.styleable.EmotionalFaceViewStyles_emotion, emotion)
+
+                faceColor = getColor(R.styleable.EmotionalFaceViewStyles_faceColor, faceColor)
+                mouthColor = getColor(R.styleable.EmotionalFaceViewStyles_mouthColor, mouthColor)
+                eyesColor = getColor(R.styleable.EmotionalFaceViewStyles_eyesColor, eyesColor)
+
+                borderColor = getColor(R.styleable.EmotionalFaceViewStyles_borderColor, borderColor)
+                boundsColor = getColor(R.styleable.EmotionalFaceViewStyles_boundsColor, boundsColor)
+
+                eyesRoundedRectRadius = getDimension(R.styleable
+                        .EmotionalFaceViewStyles_eyesRoundedRectRadius, eyesRoundedRectRadius)
+                borderWidth = getDimension(R.styleable.EmotionalFaceViewStyles_borderWidth,
+                        borderWidth)
+                boundsWidth = getDimension(R.styleable.EmotionalFaceViewStyles_boundsWidth,
+                        boundsWidth)
+
+
+            } finally {
+                recycle()
+            }
         }
     }
 

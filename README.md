@@ -40,7 +40,8 @@ is for it to actually fill).
 
 For styling, this custom view actually uses attributes that are declared in `attrs.xml`
 and then used in the `activity_custom_view.xml` layout file. This way colors and dimensions
-don't have to be hardcoded in the Kotlin code.
+don't have to be hardcoded in the Kotlin code. To learn more about declaring styleable
+attributes read [this medium article](http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/).
 
 ## Custom LayoutManager
 todo
@@ -55,3 +56,4 @@ todo
 - [Book on Android Custom Views, Drawables, LayoutManagers, Scrolling](https://play.google.com/books/reader?id=dnr_CgAAQBAJ&printsec=frontcover&output=reader&hl=en&pg=GBS.PT400)
 - [Video about Android UI rendering from Google IO 18](https://youtu.be/zdQRIYOST64)
 - [Tutorial on creating custom views](https://www.raywenderlich.com/175645/android-custom-view-tutorial)
+- [More information on Styled Attribute Sets in XML](http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/)
