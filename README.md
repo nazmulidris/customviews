@@ -39,7 +39,7 @@ how much space it has by asking its parent for its size, then measures itself by
 a height and width that preserves its aspect ration (regardless of how much space there
 is for it to actually fill).
 
-### Styling in XML 
+### Styling in XML
 For styling, this custom view actually uses attributes that are declared in `attrs.xml`
 and then used in the `activity_custom_view.xml` layout file. This way colors and dimensions
 don't have to be hardcoded in the Kotlin code. To learn more about declaring styleable
