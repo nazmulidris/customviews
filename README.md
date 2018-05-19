@@ -8,7 +8,7 @@ This project is about the exploration of custom views. It explores the following
 4. Custom Scrolling (todo from book)
 
 ## Custom Drawable
-The `ImageView` has it's background set to `SimpleTextDrawable` and it's height and width are
+The `ImageView` has its background set to `SimpleTextDrawable` and its height and width are
 not explicitly set; the layout params of `wrap_content` is set for both the height and width.
 ```kotlin
 imageView.backgroundDrawable = SimpleTextDrawable()
@@ -20,7 +20,23 @@ its actual width and height to this intrinsic width and height when measure and 
 performed.
 
 ## Custom View
-todo
+The `EmotionalFaceView` component is responsive to the amount of space (width and height)
+provided by its parent. In this case, the parent is a `FrameLayout` which both explicitly
+sets the height and width of the `EmotionalFaceView` and also allows it to be responsive
+by setting the width and height to `match_parent`. 
+
+```kotlin
+override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        size = Math.min(measuredWidth, measuredHeight)
+        setMeasuredDimension(size, size)
+    }
+```
+
+The `EmotionalFaceView` figures out
+how much space it has by asking its parent for its size, then measures itself by picking
+a height and width that preserves its aspect ration (regardless of how much space there
+is for it to actually fill).
 
 ## Custom LayoutManager
 todo
