@@ -1,4 +1,4 @@
-# customviews
+# Android Custom Views
 
 This project is about the exploration of custom views. It explores the following.
 
@@ -27,10 +27,10 @@ by setting the width and height to `match_parent`.
 
 ```kotlin
 override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        size = Math.min(measuredWidth, measuredHeight)
-        setMeasuredDimension(size, size)
-    }
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    size = Math.min(measuredWidth, measuredHeight)
+    setMeasuredDimension(size, size)
+}
 ```
 
 The `EmotionalFaceView` figures out
