@@ -3,7 +3,7 @@
 This project is about the exploration of custom views. It explores the following.
 
 1. Custom Drawable
-2. Custom View (todo from book and video)
+2. Custom View
 3. Custom LayoutManager (todo from video)
 4. Custom Scrolling (todo from book)
 
