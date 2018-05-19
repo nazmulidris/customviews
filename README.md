@@ -25,6 +25,7 @@ provided by its parent. In this case, the parent is a `FrameLayout` which both e
 sets the height and width of the `EmotionalFaceView` and also allows it to be responsive
 by setting the width and height to `match_parent`. 
 
+### Measure
 ```kotlin
 override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -38,6 +39,7 @@ how much space it has by asking its parent for its size, then measures itself by
 a height and width that preserves its aspect ration (regardless of how much space there
 is for it to actually fill).
 
+### Styling in XML 
 For styling, this custom view actually uses attributes that are declared in `attrs.xml`
 and then used in the `activity_custom_view.xml` layout file. This way colors and dimensions
 don't have to be hardcoded in the Kotlin code. To learn more about declaring styleable
