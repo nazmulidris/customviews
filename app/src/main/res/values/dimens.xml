@@ -15,19 +15,6 @@
   -->
 
 <resources>
-    <declare-styleable name="EmotionalFaceViewStyles">
-        <attr name="faceColor" format="color" />
-        <attr name="eyesColor" format="color" />
-        <attr name="mouthColor" format="color" />
-        <attr name="borderColor" format="color" />
-        <attr name="boundsColor" format="color" />
-        <attr name="eyesRoundedRectRadius" format="dimension" />
-        <attr name="borderWidth" format="dimension" />
-        <attr name="boundsWidth" format="dimension" />
-        <attr name="emotion" format="enum">
-            <enum name="happy" value="0" />
-            <enum name="sad" value="1" />
-        </attr>
-    </declare-styleable>
-
+    <dimen name="face_button_width">32dp</dimen>
+    <dimen name="face_button_height">32dp</dimen>
 </resources>

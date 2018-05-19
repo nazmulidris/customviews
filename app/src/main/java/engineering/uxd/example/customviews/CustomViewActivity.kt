@@ -49,6 +49,25 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
     private var size: Int = 0
 
+    private var emotion = 0 // 0 is happy, 1 is sad
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    // Get styling from XML attributes
+
+    init {
+        val array = context.theme.obtainStyledAttributes(
+                attrs, R.styleable.EmotionalFaceViewStyles, 0, 0)
+        try {
+            emotion = array.getInt(R.styleable.EmotionalFaceViewStyles_emotion, emotion)
+        } finally {
+            array.recycle()
+        }
+    }
+
+
     // Measure functions (set size)
 
     /**
@@ -110,8 +129,19 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
     private fun drawMouth(canvas: Canvas) {
         val mouthPath = Path().apply {
             moveTo(size * 0.22f, size * 0.7f)
-            quadTo(size * 0.50f, size * 0.80f, size * 0.78f, size * 0.70f)
-            quadTo(size * 0.50f, size * 0.90f, size * 0.22f, size * 0.70f)
+
+            when (emotion) {
+            // Happy
+                0 -> {
+                    quadTo(size * 0.50f, size * 0.80f, size * 0.78f, size * 0.70f)
+                    quadTo(size * 0.50f, size * 0.90f, size * 0.22f, size * 0.70f)
+                }
+            // Sad
+                1 -> {
+                    quadTo(size * 0.50f, size * 0.50f, size * 0.78f, size * 0.70f)
+                    quadTo(size * 0.50f, size * 0.60f, size * 0.22f, size * 0.70f)
+                }
+            }
         }
         with(paint) {
             color = mouthColor
