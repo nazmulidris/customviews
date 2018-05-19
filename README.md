@@ -43,6 +43,19 @@ and then used in the `activity_custom_view.xml` layout file. This way colors and
 don't have to be hardcoded in the Kotlin code. To learn more about declaring styleable
 attributes read [this medium article](http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/).
 
+```kotlin
+with(context.obtainStyledAttributes(attrs, R.styleable.EmotionalFaceViewStyles, 0, 0)) {
+    try {
+        emotion = getInt(R.styleable.EmotionalFaceViewStyles_emotion, emotion)
+        faceColor = getColor(R.styleable.EmotionalFaceViewStyles_faceColor, faceColor)
+        boundsWidth = getDimension(R.styleable.EmotionalFaceViewStyles_boundsWidth,
+                boundsWidth)
+    } finally {
+        recycle()
+    }
+}
+```
+
 ## Custom LayoutManager
 todo
 
