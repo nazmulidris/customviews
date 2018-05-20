@@ -202,16 +202,19 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
     // Animation
 
+    val animators = AnimatorSet()
+
     fun triggerClickAnimation() {
-        with(AnimatorSet()) {
-            playSequentially(
-                    ObjectAnimator.ofFloat(this@EmotionalFaceView, "borderWidth",
-                            borderWidth, borderWidth * 4f),
-                    ObjectAnimator.ofFloat(this@EmotionalFaceView, "borderWidth",
-                            borderWidth * 4f, borderWidth)
-            )
-            start()
-        }
+        if (!animators.isRunning)
+            with(animators) {
+                playSequentially(
+                        ObjectAnimator.ofFloat(this@EmotionalFaceView, "borderWidth",
+                                borderWidth, borderWidth * 4f),
+                        ObjectAnimator.ofFloat(this@EmotionalFaceView, "borderWidth",
+                                borderWidth * 4f, borderWidth)
+                )
+                start()
+            }
     }
 
 }
