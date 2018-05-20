@@ -72,4 +72,4 @@ todo
 - [Video about Android UI rendering from Google IO 18](https://youtu.be/zdQRIYOST64)
 - [Tutorial on creating custom views](https://www.raywenderlich.com/175645/android-custom-view-tutorial)
 - [More information on Styled Attribute Sets in XML](http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/)
-- [View Property Animators](https://android-developers.googleblog.com/2011/05/introducing-viewpropertyanimator.html)
+- [View Property Animators tutorial](https://android-developers.googleblog.com/2011/05/introducing-viewpropertyanimator.html)
