@@ -16,19 +16,32 @@
 
 package engineering.uxd.example.customviews
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.*
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
 import android.view.View
+import kotlinx.android.synthetic.main.activity_custom_view.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class CustomViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view)
+
+        with(emotionalFaceView) {
+            onClick {
+                emotion = if (emotion == 0) 1 else 0
+                triggerClickAnimation()
+            }
+        }
+
     }
+
 }
 
 class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, attrs) {
@@ -43,13 +56,17 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
 
     private var borderColor = Color.GRAY
     private var borderWidth = 16f
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     private var boundsColor = Color.GREEN
     private var boundsWidth = 16f
 
     private var size: Int = 0
 
-    private var emotion = 0 // 0 is happy, 1 is sad
+    var emotion = 0 // 0 is happy, 1 is sad
         set(value) {
             field = value
             invalidate()
@@ -85,7 +102,6 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
             }
         }
     }
-
 
     // Measure functions (set size)
 
@@ -181,6 +197,20 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
                     size * 0.68f, size * 0.5f)
             canvas.drawRoundRect(leftEyeRect, eyesRoundedRectRadius, eyesRoundedRectRadius, this)
             canvas.drawRoundRect(rightEyeRect, eyesRoundedRectRadius, eyesRoundedRectRadius, this)
+        }
+    }
+
+    // Animation
+
+    fun triggerClickAnimation() {
+        with(AnimatorSet()) {
+            playSequentially(
+                    ObjectAnimator.ofFloat(this@EmotionalFaceView, "borderWidth",
+                            borderWidth, borderWidth * 4f),
+                    ObjectAnimator.ofFloat(this@EmotionalFaceView, "borderWidth",
+                            borderWidth * 4f, borderWidth)
+            )
+            start()
         }
     }
 
