@@ -18,6 +18,10 @@ package engineering.uxd.example.customviews
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.graphics.*
 import android.os.Bundle
@@ -32,14 +36,39 @@ class CustomViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view)
+        setupViewModel()
+        respondToClick()
+    }
 
+    // LiveData and user-selection-state retention
+
+    private lateinit var stateViewModel: StateViewModel
+
+    private fun setupViewModel() {
+        stateViewModel = ViewModelProviders.of(this).get(StateViewModel::class.java)
+
+        // Attach observers to changes in the LiveData
+        stateViewModel.userSelectionState.observe(
+                this,
+                Observer {
+                    emotionalFaceView.emotion = it ?: 0
+                    emotionalFaceView.triggerClickAnimation()
+                })
+    }
+
+    class StateViewModel : ViewModel() {
+        val userSelectionState = MutableLiveData<Int>()
+    }
+
+    // User interaction
+
+    private fun respondToClick() {
         with(emotionalFaceView) {
             onClick {
-                emotion = if (emotion == 0) 1 else 0
-                triggerClickAnimation()
+                // Change the LiveData value
+                stateViewModel.userSelectionState.value = if (emotion == 0) 1 else 0
             }
         }
-
     }
 
 }
