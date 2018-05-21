@@ -51,8 +51,10 @@ class CustomViewActivity : AppCompatActivity() {
         stateViewModel.userSelectionState.observe(
                 this,
                 Observer {
-                    emotionalFaceView.emotion = it ?: 0
-                    emotionalFaceView.triggerClickAnimation()
+                    with(emotionalFaceView) {
+                        emotion = it ?: 0
+                        triggerClickAnimation()
+                    }
                 })
     }
 
@@ -118,11 +120,14 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
                 borderColor = getColor(R.styleable.EmotionalFaceViewStyles_borderColor, borderColor)
                 boundsColor = getColor(R.styleable.EmotionalFaceViewStyles_boundsColor, boundsColor)
 
-                eyesRoundedRectRadius = getDimension(R.styleable
-                        .EmotionalFaceViewStyles_eyesRoundedRectRadius, eyesRoundedRectRadius)
-                borderWidth = getDimension(R.styleable.EmotionalFaceViewStyles_borderWidth,
+                eyesRoundedRectRadius = getDimension(
+                        R.styleable.EmotionalFaceViewStyles_eyesRoundedRectRadius,
+                        eyesRoundedRectRadius)
+                borderWidth = getDimension(
+                        R.styleable.EmotionalFaceViewStyles_borderWidth,
                         borderWidth)
-                boundsWidth = getDimension(R.styleable.EmotionalFaceViewStyles_boundsWidth,
+                boundsWidth = getDimension(
+                        R.styleable.EmotionalFaceViewStyles_boundsWidth,
                         boundsWidth)
 
 
@@ -237,10 +242,10 @@ class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, a
         if (!animators.isRunning)
             with(animators) {
                 playSequentially(
-                        ObjectAnimator.ofFloat(this@EmotionalFaceView, "borderWidth",
-                                borderWidth, borderWidth * 4f),
-                        ObjectAnimator.ofFloat(this@EmotionalFaceView, "borderWidth",
-                                borderWidth * 4f, borderWidth)
+                        ObjectAnimator.ofFloat(this@EmotionalFaceView,
+                                "borderWidth", borderWidth, borderWidth * 4f),
+                        ObjectAnimator.ofFloat(this@EmotionalFaceView,
+                                "borderWidth", borderWidth * 4f, borderWidth)
                 )
                 start()
             }
