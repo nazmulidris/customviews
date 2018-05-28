@@ -19,7 +19,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="engineering.uxd.example.customviews.MainActivity"
-    android:padding="8dp">
+    android:layout_margin="8dp">
 
     <Button
         android:id="@+id/button_custom_drawable"
