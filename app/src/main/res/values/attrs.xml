@@ -15,6 +15,7 @@
   -->
 
 <resources>
+
     <declare-styleable name="EmotionalFaceViewStyles">
 
         <attr name="faceColor" format="color" />
