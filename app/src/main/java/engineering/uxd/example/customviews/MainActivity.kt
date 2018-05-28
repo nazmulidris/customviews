@@ -45,5 +45,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentFor<CustomScrolling>().singleTop())
         }
 
+        button_custom_view2.onClick {
+            startActivity(intentFor<CustomView2Activity>().singleTop())
+        }
+
+        button_custom_viewgroup.onClick {
+            startActivity(intentFor<CustomViewGroupActivity>().singleTop())
+        }
+
     }
 }

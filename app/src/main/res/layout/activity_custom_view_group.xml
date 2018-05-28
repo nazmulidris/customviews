@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2018 Nazmul Idris. All rights reserved.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,10 +18,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="engineering.uxd.example.customviews.CustomScrolling">
+    tools:context="engineering.uxd.example.customviews.CustomViewGroupActivity">
 
     <TextView
-        android:text="Custom Scrolling"
+        android:text="Custom View Group"
         style="@style/EmptyActivityLabel" />
 
 </RelativeLayout>
