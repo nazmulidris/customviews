@@ -73,3 +73,5 @@ todo
 - [Tutorial on creating custom views](https://www.raywenderlich.com/175645/android-custom-view-tutorial)
 - [More information on Styled Attribute Sets in XML](http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/)
 - [View Property Animators tutorial](https://android-developers.googleblog.com/2011/05/introducing-viewpropertyanimator.html)
+- [Theming Android Buttons](https://medium.com/android-bits/android-material-button-e7b92cb014e0)
+- [Android custom themes](https://guides.codepath.com/android/developing-custom-themes)
