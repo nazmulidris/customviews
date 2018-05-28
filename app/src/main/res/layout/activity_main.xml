@@ -14,47 +14,54 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    tools:context="engineering.uxd.example.customviews.MainActivity"
-    android:layout_margin="8dp">
+    android:layout_width="match_parent"
+    android:fillViewport="true">
 
-    <Button
-        android:id="@+id/button_custom_drawable"
-        style="@style/LauncherButton"
-        android:text="Custom Drawable"
-        android:layout_alignParentTop="true" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="engineering.uxd.example.customviews.MainActivity"
+        android:layout_margin="8dp">
 
-    <Button
-        android:id="@+id/button_custom_view"
-        style="@style/LauncherButton"
-        android:text="Custom View"
-        android:layout_below="@+id/button_custom_drawable" />
+        <Button
+            android:id="@+id/button_custom_drawable"
+            style="@style/LauncherButton"
+            android:text="Custom Drawable"
+            android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/button_custom_view2"
-        style="@style/LauncherButton"
-        android:text="Custom View 2"
-        android:layout_below="@+id/button_custom_view" />
+        <Button
+            android:id="@+id/button_custom_view"
+            style="@style/LauncherButton"
+            android:text="Custom View"
+            android:layout_below="@+id/button_custom_drawable" />
 
-    <Button
-        android:id="@+id/button_custom_viewgroup"
-        style="@style/LauncherButton"
-        android:text="Custom ViewGroup"
-        android:layout_below="@+id/button_custom_view2" />
+        <Button
+            android:id="@+id/button_custom_view2"
+            style="@style/LauncherButton"
+            android:text="Custom View 2"
+            android:layout_below="@+id/button_custom_view" />
 
-    <Button
-        android:id="@+id/button_custom_layoutmanager"
-        style="@style/LauncherButton"
-        android:text="Custom LayoutManager"
-        android:layout_below="@+id/button_custom_viewgroup" />
+        <Button
+            android:id="@+id/button_custom_viewgroup"
+            style="@style/LauncherButton"
+            android:text="Custom ViewGroup"
+            android:layout_below="@+id/button_custom_view2" />
 
-    <Button
-        android:id="@+id/button_custom_scrolling"
-        style="@style/LauncherButton"
-        android:text="Custom Scrolling"
-        android:layout_below="@+id/button_custom_layoutmanager" />
+        <Button
+            android:id="@+id/button_custom_layoutmanager"
+            style="@style/LauncherButton"
+            android:text="Custom LayoutManager"
+            android:layout_below="@+id/button_custom_viewgroup" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/button_custom_scrolling"
+            style="@style/LauncherButton"
+            android:text="Custom Scrolling"
+            android:layout_below="@+id/button_custom_layoutmanager" />
+
+    </RelativeLayout>
+
+</ScrollView>
