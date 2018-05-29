@@ -57,6 +57,12 @@ with(context.obtainStyledAttributes(attrs, R.styleable.EmotionalFaceViewStyles, 
 }
 ```
 
+## Custom View 2
+todo
+
+## Custom ViewGroup
+todo
+
 ## Custom LayoutManager
 todo
 
@@ -64,13 +70,27 @@ todo
 todo
 
 # Reference info
-- [ConstraintLayout Guide](https://developer.android.com/reference/android/support/constraint/ConstraintLayout#CenteringPositioning)
-- [ConstraintLayout Chains Tutorial](https://medium.com/@nomanr/constraintlayout-chains-4f3b58ea15bb)
-- [Video on Android Custom Views](http://oredev.org/2017/sessions/measure-layout-draw-repeat-custom-views-and-viewgroups)
+The following links are relevant to all the background material that is relevant to the
+creation of this project.
+
+## Custom Views
+- [Video on Android Custom Views](https://vimeo.com/242155617)
 - [Book on Android Custom Views, Drawables, LayoutManagers, Scrolling](https://play.google.com/books/reader?id=dnr_CgAAQBAJ&printsec=frontcover&output=reader&hl=en&pg=GBS.PT400)
-- [Video about Android UI rendering from Google IO 18](https://youtu.be/zdQRIYOST64)
 - [Tutorial on creating custom views](https://www.raywenderlich.com/175645/android-custom-view-tutorial)
+
+## Android UI rendering
+- [Video about Android UI rendering from Google IO 18](https://youtu.be/zdQRIYOST64)
+
+## Styled attribute sets in XML
 - [More information on Styled Attribute Sets in XML](http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/)
-- [View Property Animators tutorial](https://android-developers.googleblog.com/2011/05/introducing-viewpropertyanimator.html)
+
+## Theming
 - [Theming Android Buttons](https://medium.com/android-bits/android-material-button-e7b92cb014e0)
 - [Android custom themes](https://guides.codepath.com/android/developing-custom-themes)
+
+## Animation
+- [View Property Animators tutorial](https://android-developers.googleblog.com/2011/05/introducing-viewpropertyanimator.html)
+
+## ConstraintLayout
+- [ConstraintLayout Guide](https://developer.android.com/reference/android/support/constraint/ConstraintLayout#CenteringPositioning)
+- [ConstraintLayout Chains Tutorial](https://medium.com/@nomanr/constraintlayout-chains-4f3b58ea15bb)
