@@ -21,7 +21,13 @@
     tools:context="engineering.uxd.example.customviews.CustomView2Activity">
 
     <TextView
+        android:id="@+id/textView"
         android:text="Custom View 2"
         style="@style/EmptyActivityLabel" />
+
+    <engineering.uxd.example.customviews.TallyCounterView
+        android:layout_width="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

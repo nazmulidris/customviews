@@ -20,4 +20,5 @@
     <dimen name="activity_inner_margin">8dp</dimen>
     <dimen name="launcher_button_margin">4dp</dimen>
     <dimen name="launcher_button_padding">24dp</dimen>
+    <dimen name="tally_counter_stroke_width">2px</dimen>
 </resources>
