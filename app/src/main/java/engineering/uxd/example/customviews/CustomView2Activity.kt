@@ -16,8 +16,12 @@
 
 package engineering.uxd.example.customviews
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.AttributeSet
+import android.view.View
+
 
 class CustomView2Activity : AppCompatActivity() {
 
@@ -25,4 +29,28 @@ class CustomView2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view2)
     }
+}
+
+interface TallyCounter {
+    fun reset()
+    fun increment()
+    fun getCount()
+    fun setCount(value: Int)
+}
+
+class TallyCounterView : View {
+
+    // View constructors
+
+    constructor(context: Context) : this(context, null)
+
+    constructor(context: Context, attributeSet: AttributeSet?) :
+            this(context, attributeSet, 0)
+
+    constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) :
+            super(context, attributeSet, defStyleAttr)
+
+    // View implementation
+
+
 }
