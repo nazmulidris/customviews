@@ -78,7 +78,7 @@ creation of this project.
 - [Book on Android Custom Views, Drawables, LayoutManagers, Scrolling](https://play.google.com/books/reader?id=dnr_CgAAQBAJ&printsec=frontcover&output=reader&hl=en&pg=GBS.PT400)
 - [Tutorial on creating custom views](https://www.raywenderlich.com/175645/android-custom-view-tutorial)
 
-## Custom Views and Kotlin constructors
+## Custom Views and Kotlin constructors using @JvmOverloads
 - [Kotlin and Android custom view constructors](https://antonioleiva.com/custom-views-android-kotlin/)
 
 ## Android UI rendering
