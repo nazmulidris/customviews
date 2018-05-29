@@ -38,6 +38,14 @@ interface TallyCounter {
     fun setCount(value: Int)
 }
 
+class TallyCounterView @JvmOverloads constructor(context: Context,
+                                                 attrs: AttributeSet? = null,
+                                                 defStyleAttr: Int = 0) :
+        View(context, attrs, defStyleAttr)
+
+// Verbose constructor code (not using @JvmOverloads)
+
+/*
 class TallyCounterView : View {
 
     // View constructors
@@ -52,5 +60,4 @@ class TallyCounterView : View {
 
     // View implementation
 
-
-}
+}*/

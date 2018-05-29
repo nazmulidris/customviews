@@ -75,7 +75,10 @@ class CustomViewActivity : AppCompatActivity() {
 
 }
 
-class EmotionalFaceView(context: Context, attrs: AttributeSet) : View(context, attrs) {
+class EmotionalFaceView @JvmOverloads constructor(context: Context,
+                                                  attrs: AttributeSet? = null,
+                                                  defStyleAttr: Int = 0) :
+        View(context, attrs, defStyleAttr) {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
