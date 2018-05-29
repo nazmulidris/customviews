@@ -17,8 +17,11 @@
 <resources>
     <dimen name="face_button_width">32dp</dimen>
     <dimen name="face_button_height">32dp</dimen>
-    <dimen name="activity_inner_margin">8dp</dimen>
+
+    <dimen name="launcher_activity_inner_margin">8dp</dimen>
     <dimen name="launcher_button_margin">4dp</dimen>
     <dimen name="launcher_button_padding">24dp</dimen>
+
     <dimen name="tally_counter_stroke_width">2px</dimen>
+    <dimen name="tally_counter_text_size">64sp</dimen>
 </resources>
