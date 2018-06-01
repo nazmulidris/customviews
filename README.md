@@ -110,8 +110,10 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
                                                   attrs: AttributeSet? = null,
                                                   defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr) {
+    
     // View implementation
-    }
+    
+}
 ```
 
 ### Retrieving scalable dimensions as pixels
