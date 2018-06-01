@@ -58,7 +58,52 @@ with(context.obtainStyledAttributes(attrs, R.styleable.EmotionalFaceViewStyles, 
 ```
 
 ## Custom View 2
-todo
+
+### Easier View constructor in Kotlin
+Since `View` classes might have up to 3 constructors, one way to handle this situation
+in Kotlin is to write code like this.
+
+```kotlin
+class TallyCounterView : View {
+    // View constructors
+    constructor(context: Context) : this(context, null)
+
+    constructor(context: Context, attributeSet: AttributeSet?) :
+            this(context, attributeSet, 0)
+
+    constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) :
+            super(context, attributeSet, defStyleAttr)
+
+    // View implementation
+```
+
+While this will work just fine, there's a much more terse way of expressing the same
+thing as shown below using `@JvmOverloads` annotation.
+
+```kotlin
+class EmotionalFaceView @JvmOverloads constructor(context: Context,
+                                                  attrs: AttributeSet? = null,
+                                                  defStyleAttr: Int = 0) :
+        View(context, attrs, defStyleAttr) {
+        // View implementation
+        }
+```
+
+### Retrieving scalable dimensions as pixels
+You can define sp, dp, values in `dimens.xml` and in order to retrieve them, you can use
+the `Resources.getDimension()` method, which will convert the sp or dp values into a float
+that you can use. If you wanted to get a pixel value (Int) instead of a float, then you
+can use `Resources.getDimensionPixelSize()` instead.
+```kotlin
+val size: Float = resources.getDimension(R.dimen.tally_counter_text_size)
+val sizePx : Int = resources.getDimensionPixelSize(R.dimen.tally_counter_text_size)
+```
+
+Here's the code you would have to write if you don't use `getDimension()` or
+`getDimensionPixelSize()`.
+```kotlin
+val altTextSize = Math.round(resources.displayMetrics.scaledDensity * 64f)
+```
 
 ## Custom ViewGroup
 todo
