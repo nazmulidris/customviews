@@ -18,6 +18,7 @@ package engineering.uxd.example.customviews
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Bundle
@@ -47,9 +48,11 @@ interface TallyCounter {
 class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  attrs: AttributeSet? = null,
                                                  defStyleAttr: Int = 0) :
-        View(context, attrs, defStyleAttr), AnkoLogger {
+        View(context, attrs, defStyleAttr), AnkoLogger, TallyCounter {
 
     // todo https://vimeo.com/242155617 (time: 15.13)
+
+    // Constructor and properties
 
     private val helpers = Helpers()
     private val dimens = Dimens(resources)
@@ -81,7 +84,8 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             val backgroundPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val textPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
-            val backgroundRect: RectF = RectF()
+            val backgroundRect: RectF = RectF(),
+            var state: Int = 0
     )
 
     data class Dimens(val resources: Resources,
@@ -92,5 +96,35 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                       val cornerRadius: Float = resources.getDimension(
                               R.dimen.tally_counter_corner_radius)
     )
+
+    // Draw
+
+    override fun onDraw(canvas: Canvas) {
+        val width = canvas.width
+        val height = canvas.height
+        val centerX = width * 0.5f
+
+        with(helpers) {
+            backgroundRect.set(0f, 0f, width.toFloat(), height.toFloat())
+            canvas.drawRoundRect(
+                    backgroundRect, dimens.cornerRadius, dimens.cornerRadius, backgroundPaint)
+        }
+
+    }
+
+    // Implement TallyCounter interface
+
+    override fun reset() {
+    }
+
+    override fun increment() {
+    }
+
+    override fun getCount() {
+    }
+
+    override fun setCount(value: Int) {
+        helpers.state = value
+    }
 
 }
