@@ -173,14 +173,14 @@ a `RelativeLayout` in order to layout a `Toolbar`, `TextView`, and `TallyCounter
 The `Toolbar` uses the `ToolbarStyle`. This is what it looks like.
 
 ```xml
-<style name="ToolbarTextAppearance" parent="TextAppearance.AppCompat.Medium">
-    <item name="android:fontFamily">@font/noto_sans</item>
-</style>
-
 <style name="ToolbarStyle">
     <item name="titleTextColor">@color/colorAccent</item>
     <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
     <item name="android:background">@color/colorPrimary</item>
+</style>
+
+<style name="ToolbarTextAppearance" parent="TextAppearance.AppCompat.Medium">
+    <item name="android:fontFamily">@font/noto_sans</item>
 </style>
 ```
 
