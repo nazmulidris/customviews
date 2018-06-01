@@ -55,25 +55,25 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     // Constructor and properties
 
     private val helpers = Helpers()
-    private val dimens = Dimens(resources)
+    private val dimens = Dimens(resources, context)
 
     init {
 
-        // Background
+        // Background paint helper
         with(helpers.backgroundPaint) {
-            color = ContextCompat.getColor(context, R.color.colorPrimary)
+            color = dimens.backgroundColor
         }
 
-        // Line
+        // Line paint helper
         with(helpers.linePaint) {
-            color = ContextCompat.getColor(context, R.color.colorAccent)
+            color = dimens.lineColor
             strokeWidth = dimens.strokeWidth
             info { "strokeWidth (px) = ${strokeWidth}" }
         }
 
-        // Text
+        // Text paint helper
         with(helpers.textPaint) {
-            color = ContextCompat.getColor(context, R.color.colorWindowBackground)
+            color = dimens.textColor
             textSize = dimens.textSize
             info { "textSize (px) = ${textSize}" }
         }
@@ -88,13 +88,20 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             var state: Int = 0
     )
 
-    data class Dimens(val resources: Resources,
+    data class Dimens(private val resources: Resources,
+                      private val context: Context,
                       val textSize: Float = resources.getDimension(
                               R.dimen.tally_counter_text_size),
                       val strokeWidth: Float = resources.getDimension(
                               R.dimen.tally_counter_stroke_width),
                       val cornerRadius: Float = resources.getDimension(
-                              R.dimen.tally_counter_corner_radius)
+                              R.dimen.tally_counter_corner_radius),
+                      val backgroundColor: Int = ContextCompat.getColor(context,
+                              R.color.colorPrimary),
+                      val lineColor: Int = ContextCompat.getColor(context,
+                              R.color.colorAccent),
+                      val textColor: Int = ContextCompat.getColor(context,
+                              R.color.colorWindowBackground)
     )
 
     // Draw
