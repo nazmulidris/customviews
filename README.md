@@ -1,11 +1,38 @@
+Table of Contents
+=================
+
+   * [Android Custom Views](#android-custom-views)
+      * [Custom Drawable - SimpleTextDrawable](#custom-drawable---simpletextdrawable)
+      * [Custom View - EmotionalFaceView](#custom-view---emotionalfaceview)
+         * [Measure](#measure)
+         * [Styling in XML with custom attributes](#styling-in-xml-with-custom-attributes)
+      * [Custom View 2](#custom-view-2)
+         * [Easier View constructor in Kotlin](#easier-view-constructor-in-kotlin)
+         * [Retrieving scalable dimensions as pixels](#retrieving-scalable-dimensions-as-pixels)
+      * [Custom ViewGroup](#custom-viewgroup)
+      * [Custom LayoutManager](#custom-layoutmanager)
+      * [Custom Scrolling](#custom-scrolling)
+   * [Reference info](#reference-info)
+      * [Custom Views](#custom-views)
+      * [Custom Views and Kotlin constructors using @JvmOverloads](#custom-views-and-kotlin-constructors-using-jvmoverloads)
+      * [Android UI rendering](#android-ui-rendering)
+      * [Styled attribute sets in XML](#styled-attribute-sets-in-xml)
+      * [Theming](#theming)
+      * [Animation](#animation)
+      * [ConstraintLayout](#constraintlayout)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 # Android Custom Views
 
 This project is about the exploration of custom views. It explores the following.
 
 1. Custom Drawable
 2. Custom View
-3. Custom LayoutManager (todo from video)
-4. Custom Scrolling (todo from book)
+3. Custom View 2
+4. Custom ViewGroup
+5. Custom LayoutManager (todo from video)
+6. Custom Scrolling (todo from book)
 
 ## Custom Drawable - `SimpleTextDrawable`
 The `ImageView` has its background set to `SimpleTextDrawable` and its height and width are
