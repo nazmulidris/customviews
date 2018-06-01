@@ -100,6 +100,8 @@ class TallyCounterView : View {
             super(context, attributeSet, defStyleAttr)
 
     // View implementation
+    
+}
 ```
 
 While this will work just fine, there's a much more terse way of expressing the same
