@@ -1,7 +1,7 @@
-Table of Contents
-=================
+Android Custom Views
+====================
 
-   * [Android Custom Views](#android-custom-views)
+   * [Overview](#overview)
       * [Custom Drawable - SimpleTextDrawable](#custom-drawable---simpletextdrawable)
       * [Custom View - EmotionalFaceView](#custom-view---emotionalfaceview)
          * [Measure](#measure)
@@ -21,9 +21,7 @@ Table of Contents
       * [Animation](#animation)
       * [ConstraintLayout](#constraintlayout)
 
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
-# Android Custom Views
+# Overview
 
 This project is about the exploration of custom views. It explores the following.
 
