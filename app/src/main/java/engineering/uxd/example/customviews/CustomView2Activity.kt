@@ -17,7 +17,9 @@
 package engineering.uxd.example.customviews
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Paint
+import android.graphics.RectF
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -42,25 +44,6 @@ interface TallyCounter {
     fun setCount(value: Int)
 }
 
-// Verbose constructor code (not using @JvmOverloads)
-
-/*
-class TallyCounterView : View {
-
-    // View constructors
-
-    constructor(context: Context) : this(context, null)
-
-    constructor(context: Context, attributeSet: AttributeSet?) :
-            this(context, attributeSet, 0)
-
-    constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) :
-            super(context, attributeSet, defStyleAttr)
-
-    // View implementation
-
-}*/
-
 class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  attrs: AttributeSet? = null,
                                                  defStyleAttr: Int = 0) :
@@ -69,6 +52,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     // todo https://vimeo.com/242155617 (time: 15.13)
 
     private val helpers = Helpers()
+    private val dimens = Dimens(resources)
 
     init {
 
@@ -80,25 +64,33 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         // Line
         with(helpers.linePaint) {
             color = ContextCompat.getColor(context, R.color.colorAccent)
-            strokeWidth = resources.getDimension(R.dimen.tally_counter_stroke_width)
+            strokeWidth = dimens.strokeWidth
+            info { "strokeWidth (px) = ${strokeWidth}" }
         }
 
         // Text
         with(helpers.textPaint) {
             color = ContextCompat.getColor(context, R.color.colorWindowBackground)
-            val textSize = resources.getDimension(R.dimen.tally_counter_text_size)
+            textSize = dimens.textSize
             info { "textSize (px) = ${textSize}" }
-            // If not using dimens.xml, this is how to manually convert sp -> px
-            /*
-            val altTextSize = Math.round(resources.displayMetrics.scaledDensity * 64f)
-            info { "altTextSize = ${altTextSize}" }
-            */
         }
 
     }
 
-    data class Helpers(val backgroundPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
-                       val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
-                       val textPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG))
+    data class Helpers(
+            val backgroundPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
+            val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
+            val textPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
+            val backgroundRect: RectF = RectF()
+    )
+
+    data class Dimens(val resources: Resources,
+                      val textSize: Float = resources.getDimension(
+                              R.dimen.tally_counter_text_size),
+                      val strokeWidth: Float = resources.getDimension(
+                              R.dimen.tally_counter_stroke_width),
+                      val cornerRadius: Float = resources.getDimension(
+                              R.dimen.tally_counter_corner_radius)
+    )
 
 }
