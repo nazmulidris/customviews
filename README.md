@@ -139,7 +139,6 @@ val altTextSize = Math.round(resources.displayMetrics.scaledDensity * 64f)
 ### Themes and styles
 The `CustomView2Activity` doesn't use the default style `DefaultActivity`, and it also
 a `RelativeLayout` in order to layout a `Toolbar`, `TextView`, and `TallyCounterView`.
-The `Toolbar` uses the following styles.
 
 ```xml
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -171,7 +170,7 @@ The `Toolbar` uses the following styles.
 </RelativeLayout>
 ```
 
-This is what the `ToolbarStyle` style looks like.
+The `Toolbar` uses the `ToolbarStyle`. This is what it looks like.
 
 ```xml
 <style name="ToolbarTextAppearance" parent="TextAppearance.AppCompat.Medium">
