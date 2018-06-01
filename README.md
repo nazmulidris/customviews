@@ -1,7 +1,6 @@
 Android Custom Views
 ====================
 
-* [Android Custom Views](#android-custom-views)
 * [Overview](#overview)
   * [Custom Drawable - SimpleTextDrawable](#custom-drawable---simpletextdrawable)
   * [Custom View - EmotionalFaceView](#custom-view---emotionalfaceview)
