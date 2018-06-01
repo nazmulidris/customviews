@@ -184,12 +184,12 @@ The `Toolbar` uses the `ToolbarStyle`. This is what it looks like.
 </style>
 ```
 
-The `ToolbarStyle` style uses both `TextAppearance` and `style` elements. 
-The `Toolbar` widget allows itself to be customized thru the use of 
+The `ToolbarStyle` style uses both `TextAppearance` and `style` elements.
+The `Toolbar` widget allows itself to be customized thru the use of
 `app:titleTextAppearance` and `app:titleTextColor`. These are both
-used in the `ToolbarStyle`, however, the `app:` namespace has to be used if 
-this was applied to the `android.support.v7.widget.Toolbar` XML 
-in the layout. Here's an example.
+used in the `ToolbarStyle`, however, the `app:` namespace has to be used if
+this was applied to the `android.support.v7.widget.Toolbar` in the XML layout
+directly. Here's an example of what that would look like.
 
 ```xml
 <android.support.v7.widget.Toolbar
