@@ -164,6 +164,12 @@ creation of this project.
 ## Theming
 - [Theming Android Buttons](https://medium.com/android-bits/android-material-button-e7b92cb014e0)
 - [Android custom themes](https://guides.codepath.com/android/developing-custom-themes)
+- [TextAppearance vs Styles](http://blog.danlew.net/2014/11/19/styles-on-android/)
+- [Toolbar TextAppearance and Style](https://stackoverflow.com/questions/26533510/android-toolbar-center-title-and-custom-font/40916343#40916343)
+- [App namespace in styles](https://stackoverflow.com/questions/39336054/using-app-namespace-in-style/39336520)
+
+## RelativeLayout
+- [Toolbar and RelativeLayout](https://stackoverflow.com/questions/27103954/is-the-toolbar-able-to-work-in-relativelayout)
 
 ## Animation
 - [View Property Animators tutorial](https://android-developers.googleblog.com/2011/05/introducing-viewpropertyanimator.html)
