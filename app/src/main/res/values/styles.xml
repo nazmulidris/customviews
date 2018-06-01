@@ -27,6 +27,11 @@
         <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
+    <style name="DefaultActivity">
+        <item name="android:layout_margin">@dimen/default_margin</item>
+
+    </style>
+
     <style name="LauncherButton" parent="TextAppearance.AppCompat.Medium">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:layout_margin">@dimen/launcher_button_margin</item>
@@ -34,6 +39,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="EmptyActivityLabel" parent="TextAppearance.AppCompat.Large">
