@@ -38,13 +38,6 @@ class CustomView2Activity : AppCompatActivity() {
     }
 }
 
-interface TallyCounter {
-    fun reset()
-    fun increment()
-    fun getCount()
-    fun setCount(value: Int)
-}
-
 class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  attrs: AttributeSet? = null,
                                                  defStyleAttr: Int = 0) :
@@ -134,4 +127,13 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         helpers.state = value
     }
 
+}
+
+// TallyCounter interface
+
+interface TallyCounter {
+    fun reset()
+    fun increment()
+    fun getCount()
+    fun setCount(value: Int)
 }
