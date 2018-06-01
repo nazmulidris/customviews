@@ -47,7 +47,7 @@
         <item name="android:fontFamily">@font/noto_sans</item>
     </style>
 
-    <style name="Toolbar">
+    <style name="ToolbarStyle">
         <item name="titleTextColor">@color/colorAccent</item>
         <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
         <item name="android:background">@color/colorPrimary</item>

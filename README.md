@@ -134,6 +134,77 @@ Here's the code you would have to write if you don't use `getDimension()` or
 val altTextSize = Math.round(resources.displayMetrics.scaledDensity * 64f)
 ```
 
+### Themes and styles
+The `CustomView2Activity` doesn't use the default style `DefaultActivity`, and it also
+a `RelativeLayout` in order to layout a `Toolbar`, `TextView`, and `TallyCounterView`.
+The `Toolbar` uses the following styles.
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/app_name"
+        style="@style/ToolbarStyle" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:text="Custom View 2"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:layout_marginTop="@dimen/default_margin"
+        style="@style/EmptyActivityLabel" />
+
+    <engineering.uxd.example.customviews.TallyCounterView
+        android:layout_margin="@dimen/default_margin"
+        android:layout_below="@id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
+```
+
+This is what the `ToolbarStyle` style looks like.
+
+```xml
+<style name="ToolbarTextAppearance" parent="TextAppearance.AppCompat.Medium">
+    <item name="android:fontFamily">@font/noto_sans</item>
+</style>
+
+<style name="ToolbarStyle">
+    <item name="titleTextColor">@color/colorAccent</item>
+    <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
+    <item name="android:background">@color/colorPrimary</item>
+</style>
+```
+
+The `ToolbarStyle` style uses both `TextAppearance` and `style` elements. 
+The `Toolbar` widget allows itself to be customized thru the use of 
+`app:titleTextAppearance` and `app:titleTextColor`. These are both
+used in the `ToolbarStyle`, however, the `app:` namespace has to be used if 
+this was applied to the `android.support.v7.widget.Toolbar` XML 
+in the layout. Here's an example.
+
+```xml
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:titleTextAppearance="..."          <- need namespace
+    app:titleTextColor="..."               <- need namespace
+    app:title="@string/app_name"
+    style="@style/Toolbar" />
+```
+
+The `ToolbarTextAppearance` is used in the `styles.xml` to set a custom font, which
+is then used by the `ToolbarStyle` style itself. This style is then used on the `Toolbar`
+widget.
+
 ## Custom ViewGroup
 todo
 
