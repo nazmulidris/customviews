@@ -119,9 +119,9 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
 ```
 
 ### Retrieving scalable dimensions as pixels
-You can define sp, dp, values in `dimens.xml` and in order to retrieve them, you can use
-the `Resources.getDimension()` method, which will convert the sp or dp values into a float
-that you can use. If you wanted to get a pixel value (Int) instead of a float, then you
+You can define `sp`, `dp`, values in `dimens.xml` and in order to retrieve them, you can use
+the `Resources.getDimension()` method, which will convert the sp or dp values into a `float`
+that you can use. If you wanted to get a pixel value (`Int`) instead of a `float`, then you
 can use `Resources.getDimensionPixelSize()` instead.
 ```kotlin
 val size: Float = resources.getDimension(R.dimen.tally_counter_text_size)
