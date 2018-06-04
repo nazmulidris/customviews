@@ -47,39 +47,42 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
     // Constructor and properties
 
-    private val helpers = Helpers()
     private val dimens = Dimens(resources, context)
-
-    init {
-
-        // Background paint helper
-        with(helpers.backgroundPaint) {
-            color = dimens.backgroundColor
-        }
-
-        // Line paint helper
-        with(helpers.linePaint) {
-            color = dimens.lineColor
-            strokeWidth = dimens.strokeWidth
-            info { "strokeWidth (px) = ${strokeWidth}" }
-        }
-
-        // Text paint helper
-        with(helpers.textPaint) {
-            color = dimens.textColor
-            textSize = dimens.textSize
-            info { "textSize (px) = ${textSize}" }
-        }
-
-    }
+    private val helpers = Helpers(dimens)
 
     data class Helpers(
+            val dimens: Dimens,
             val backgroundPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val textPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val backgroundRect: RectF = RectF(),
             var state: Int = 0
-    )
+    ) : AnkoLogger {
+
+        init {
+
+            // Background paint helper
+            with(backgroundPaint) {
+                color = dimens.backgroundColor
+            }
+
+            // Line paint helper
+            with(linePaint) {
+                color = dimens.lineColor
+                strokeWidth = dimens.strokeWidth
+                info { "strokeWidth (px) = ${strokeWidth}" }
+            }
+
+            // Text paint helper
+            with(textPaint) {
+                color = dimens.textColor
+                textSize = dimens.textSize
+                info { "textSize (px) = ${textSize}" }
+            }
+
+        }
+
+    }
 
     data class Dimens(private val resources: Resources,
                       private val context: Context,
@@ -104,10 +107,17 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         val height = canvas.height
         val centerX = width * 0.5f
 
+        // Draw filled rectangle (background)
         with(helpers) {
             backgroundRect.set(0f, 0f, width.toFloat(), height.toFloat())
             canvas.drawRoundRect(
                     backgroundRect, dimens.cornerRadius, dimens.cornerRadius, backgroundPaint)
+        }
+
+        // Draw baseline
+        with(helpers) {
+            val baselineY = height * 0.6f
+            canvas.drawLine(0F, baselineY, width.toFloat(), baselineY, linePaint)
         }
 
     }
