@@ -43,20 +43,20 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  defStyleAttr: Int = 0) :
         View(context, attrs, defStyleAttr), AnkoLogger, TallyCounter {
 
-    // todo https://vimeo.com/242155617 (time: 16.46)
+    // todo https://vimeo.com/242155617 (time: 18.12)
 
     // Constructor and properties
 
     private val dimens = Dimens(resources, context)
     private val helpers = Helpers(dimens)
+    private var counter = 10
 
     data class Helpers(
             val dimens: Dimens,
             val backgroundPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val textPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
-            val backgroundRect: RectF = RectF(),
-            var state: Int = 0
+            val backgroundRect: RectF = RectF()
     ) : AnkoLogger {
 
         init {
@@ -93,11 +93,11 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                       val cornerRadius: Float = resources.getDimension(
                               R.dimen.tally_counter_corner_radius),
                       val backgroundColor: Int = ContextCompat.getColor(context,
-                              R.color.colorPrimary),
+                              R.color.colorPrimaryDark),
                       val lineColor: Int = ContextCompat.getColor(context,
-                              R.color.colorAccent),
+                              R.color.colorPrimary),
                       val textColor: Int = ContextCompat.getColor(context,
-                              R.color.colorWindowBackground)
+                              R.color.colorAccent)
     )
 
     // Draw
@@ -105,7 +105,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     override fun onDraw(canvas: Canvas) {
         val width = canvas.width
         val height = canvas.height
-        val centerX = width * 0.5f
+        val baselineY = height * 0.6f
 
         // Draw filled rectangle (background)
         with(helpers) {
@@ -116,8 +116,16 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
         // Draw baseline
         with(helpers) {
-            val baselineY = height * 0.6f
             canvas.drawLine(0F, baselineY, width.toFloat(), baselineY, linePaint)
+        }
+
+        // Draw text
+        with(helpers) {
+            val content = "❤ ${counter}"
+            val centerX = width * 0.5f
+            val textWidth = textPaint.measureText(content)
+            val textX = centerX - textWidth * 0.5f
+            canvas.drawText(content, textX, baselineY, textPaint)
         }
 
     }
@@ -134,7 +142,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     }
 
     override fun setCount(value: Int) {
-        helpers.state = value
+        counter = value
     }
 
 }
