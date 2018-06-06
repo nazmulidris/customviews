@@ -26,8 +26,10 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
 import android.view.View
+import kotlinx.android.synthetic.main.activity_custom_view2.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
 class CustomView2Activity : AppCompatActivity() {
@@ -35,6 +37,9 @@ class CustomView2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view2)
+        button_increment_counter.onClick {
+            view_tally_counter.increment()
+        }
     }
 }
 
@@ -49,7 +54,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
     private val dimens = Dimens(resources, context)
     private val helpers = Helpers(dimens)
-    private var counter = 10
+    private var counter = 0
 
     data class Helpers(
             val dimens: Dimens,
@@ -133,12 +138,17 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     // Implement TallyCounter interface
 
     override fun reset() {
+        counter = 0
+        invalidate()
     }
 
     override fun increment() {
+        counter++
+        invalidate()
     }
 
-    override fun getCount() {
+    override fun getCount(): Int {
+        return counter
     }
 
     override fun setCount(value: Int) {
@@ -152,6 +162,6 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 interface TallyCounter {
     fun reset()
     fun increment()
-    fun getCount()
+    fun getCount(): Int
     fun setCount(value: Int)
 }

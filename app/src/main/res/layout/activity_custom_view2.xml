@@ -37,9 +37,17 @@
         android:layout_marginTop="@dimen/default_margin"
         style="@style/EmptyActivityLabel" />
 
+    <Button
+        android:id="@+id/button_increment_counter"
+        android:layout_width="wrap_content"
+        style="@style/LauncherButton"
+        android:text="Increment Counter"
+        android:layout_below="@id/textView" />
+
     <engineering.uxd.example.customviews.TallyCounterView
+        android:id="@+id/view_tally_counter"
+        android:layout_below="@+id/button_increment_counter"
         android:layout_margin="@dimen/default_margin"
-        android:layout_below="@id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
