@@ -50,7 +50,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  defStyleAttr: Int = 0) :
         View(context, attrs, defStyleAttr), AnkoLogger, TallyCounter {
 
-    // todo https://vimeo.com/242155617 (time: 18.12)
+    // todo https://vimeo.com/242155617 (time: 21.20)
 
     // Constructor and properties
 
