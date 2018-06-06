@@ -19,7 +19,6 @@ package engineering.uxd.example.customviews
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
-import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Bundle
@@ -77,8 +76,6 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             with(linePaint) {
                 color = dimens.lineColor
                 strokeWidth = dimens.strokeWidth
-                style = Paint.Style.STROKE
-                pathEffect = DashPathEffect(listOf(10f, 20f).toFloatArray(), 0f)
                 info { "strokeWidth (px) = ${strokeWidth}" }
             }
 
@@ -128,8 +125,25 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
         // Draw text baseline & vertical center of the Canvas
         with(helpers) {
-            canvas.drawLine(0F, baselineY, width.toFloat(), baselineY, linePaint)
-            canvas.drawLine(0F, (height / 2).toFloat(), width.toFloat(), (height / 2).toFloat(), linePaint)
+
+            // Vertical center line
+            //canvas.drawLine(0F, (height / 2).toFloat(), width.toFloat(), (height / 2).toFloat(), linePaint)
+            for (x in 1..width step (dimens.strokeWidth * 5).toInt()) {
+                canvas.drawLine(
+                        x.toFloat(), (height / 2).toFloat(),
+                        x + dimens.strokeWidth, (height / 2).toFloat(),
+                        linePaint)
+            }
+
+            // Text baseline line
+            //canvas.drawLine(0F, baselineY, width.toFloat(), baselineY, linePaint)
+            for (x in 1..width step (dimens.strokeWidth * 3).toInt()) {
+                canvas.drawLine(
+                        x.toFloat(), baselineY,
+                        x + dimens.strokeWidth, baselineY,
+                        linePaint)
+            }
+
         }
 
         // Draw text
