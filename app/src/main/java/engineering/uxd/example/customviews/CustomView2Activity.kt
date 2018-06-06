@@ -19,6 +19,7 @@ package engineering.uxd.example.customviews
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
+import android.graphics.DashPathEffect
 import android.graphics.Paint
 import android.graphics.RectF
 import android.os.Bundle
@@ -76,6 +77,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             with(linePaint) {
                 color = dimens.lineColor
                 strokeWidth = dimens.strokeWidth
+                pathEffect = DashPathEffect(listOf(10f, 20f).toFloatArray(), 0f)
                 info { "strokeWidth (px) = ${strokeWidth}" }
             }
 
@@ -111,7 +113,10 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     override fun onDraw(canvas: Canvas) {
         val width = canvas.width
         val height = canvas.height
-        val baselineY = height * 0.6f
+
+        val fontMetrics = helpers.textPaint.fontMetrics
+        val fontHeight = fontMetrics.descent - fontMetrics.ascent
+        val baselineY = height / 2f + (-fontMetrics.ascent / 2) - (fontMetrics.descent / 2)
 
         // Draw filled rectangle (background)
         with(helpers) {
@@ -120,9 +125,10 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                     backgroundRect, dimens.cornerRadius, dimens.cornerRadius, backgroundPaint)
         }
 
-        // Draw baseline
+        // Draw text baseline & vertical center of the Canvas
         with(helpers) {
             canvas.drawLine(0F, baselineY, width.toFloat(), baselineY, linePaint)
+            canvas.drawLine(0F, (height / 2).toFloat(), width.toFloat(), (height / 2).toFloat(), linePaint)
         }
 
         // Draw text

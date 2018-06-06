@@ -206,6 +206,34 @@ The `ToolbarTextAppearance` is used in the `styles.xml` to set a custom font, wh
 is then used by the `ToolbarStyle` style itself. This style is then used on the `Toolbar`
 widget.
 
+### Paint and text (baseline)
+In order to display the current count vertically centered inside of the `Canvas` a lot of
+work has to be done in order to make this happen. This is due to the fact that the `Paint`
+object interprets the Y value passed to it, to mean the baseline of the text. Here's 
+[more information](https://stackoverflow.com/a/42091739/2085356) on baseline, `FontMetrics`
+ascent and descent. In order to vertically center the text so that the `Paint` can actually
+`drawText()` at the vertical center of the `Canvas` the following code has to be used.
+
+```kotlin
+override fun onDraw(canvas: Canvas) {
+        val width = canvas.width
+        val height = canvas.height
+
+        val fontMetrics = helpers.textPaint.getFontMetrics()
+        val baselineY = height / 2f + (-fontMetrics.ascent / 2) - (fontMetrics.descent / 2)
+
+        // Draw text
+        with(helpers) {
+            val content = "❤ ${String.format(Locale.getDefault(), "%03d", count)}"
+            val centerX = width * 0.5f
+            val textWidth = textPaint.measureText(content)
+            val textX = centerX - textWidth * 0.5f
+            canvas.drawText(content, textX, baselineY, textPaint)
+        }
+
+    }
+```
+
 ## Custom ViewGroup
 todo
 
@@ -229,6 +257,9 @@ creation of this project.
 
 ## Android UI rendering
 - [Video about Android UI rendering from Google IO 18](https://youtu.be/zdQRIYOST64)
+
+## TextView and baseline
+- [Android TextView height, FontMetrics, and baseline](https://stackoverflow.com/a/42091739/2085356)
 
 ## Styled attribute sets in XML
 - [More information on Styled Attribute Sets in XML](http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/)

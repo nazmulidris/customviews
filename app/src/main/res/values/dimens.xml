@@ -22,7 +22,7 @@
     <dimen name="launcher_button_margin">4dp</dimen>
     <dimen name="launcher_button_padding">16dp</dimen>
 
-    <dimen name="tally_counter_stroke_width">8dp</dimen>
+    <dimen name="tally_counter_stroke_width">4dp</dimen>
     <dimen name="tally_counter_text_size">64sp</dimen>
     <dimen name="tally_counter_corner_radius">8dp</dimen>
 </resources>
