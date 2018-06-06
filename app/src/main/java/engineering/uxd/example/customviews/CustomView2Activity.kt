@@ -77,6 +77,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             with(linePaint) {
                 color = dimens.lineColor
                 strokeWidth = dimens.strokeWidth
+                style = Paint.Style.STROKE
                 pathEffect = DashPathEffect(listOf(10f, 20f).toFloatArray(), 0f)
                 info { "strokeWidth (px) = ${strokeWidth}" }
             }
@@ -115,7 +116,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         val height = canvas.height
 
         val fontMetrics = helpers.textPaint.fontMetrics
-        val fontHeight = fontMetrics.descent - fontMetrics.ascent
+        //val fontHeight = fontMetrics.descent - fontMetrics.ascent
         val baselineY = height / 2f + (-fontMetrics.ascent / 2) - (fontMetrics.descent / 2)
 
         // Draw filled rectangle (background)
