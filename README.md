@@ -218,22 +218,22 @@ ascent and descent. In order to vertically center the text so that the `Paint` c
 
 ```kotlin
 override fun onDraw(canvas: Canvas) {
-        val width = canvas.width
-        val height = canvas.height
+    val width = canvas.width
+    val height = canvas.height
 
-        val fontMetrics = helpers.textPaint.getFontMetrics()
-        val baselineY = height / 2f + (-fontMetrics.ascent / 2) - (fontMetrics.descent / 2)
+    val fontMetrics = helpers.textPaint.getFontMetrics()
+    val baselineY = height / 2f + (-fontMetrics.ascent / 2) - (fontMetrics.descent / 2)
 
-        // Draw text
-        with(helpers) {
-            val content = "❤ ${String.format(Locale.getDefault(), "%03d", count)}"
-            val centerX = width * 0.5f
-            val textWidth = textPaint.measureText(content)
-            val textX = centerX - textWidth * 0.5f
-            canvas.drawText(content, textX, baselineY, textPaint)
-        }
-
+    // Draw text
+    with(helpers) {
+        val content = "❤ ${String.format(Locale.getDefault(), "%03d", count)}"
+        val centerX = width * 0.5f
+        val textWidth = textPaint.measureText(content)
+        val textX = centerX - textWidth * 0.5f
+        canvas.drawText(content, textX, baselineY, textPaint)
     }
+
+}
 ```
 
 ## Custom ViewGroup
