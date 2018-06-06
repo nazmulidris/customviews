@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_custom_view2.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import java.util.*
 
 
 class CustomView2Activity : AppCompatActivity() {
@@ -54,7 +55,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
     private val dimens = Dimens(resources, context)
     private val helpers = Helpers(dimens)
-    private var counter = 0
+    private var count = 0
 
     data class Helpers(
             val dimens: Dimens,
@@ -126,7 +127,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
         // Draw text
         with(helpers) {
-            val content = "❤ ${counter}"
+            val content = "❤ ${String.format(Locale.getDefault(), "%03d", count)}"
             val centerX = width * 0.5f
             val textWidth = textPaint.measureText(content)
             val textX = centerX - textWidth * 0.5f
@@ -138,21 +139,21 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     // Implement TallyCounter interface
 
     override fun reset() {
-        counter = 0
+        count = 0
         invalidate()
     }
 
     override fun increment() {
-        counter++
+        count++
         invalidate()
     }
 
     override fun getCount(): Int {
-        return counter
+        return count
     }
 
     override fun setCount(value: Int) {
-        counter = value
+        count = value
     }
 
 }
