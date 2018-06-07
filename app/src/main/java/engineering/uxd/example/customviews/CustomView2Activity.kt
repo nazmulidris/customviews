@@ -44,12 +44,12 @@ class CustomView2Activity : AppCompatActivity() {
     }
 }
 
+// todo https://vimeo.com/242155617 (time: 22.48)
+
 class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  attrs: AttributeSet? = null,
                                                  defStyleAttr: Int = 0) :
         View(context, attrs, defStyleAttr), AnkoLogger, TallyCounter {
-
-    // todo https://vimeo.com/242155617 (time: 21.20)
 
     // Constructor and properties
 
