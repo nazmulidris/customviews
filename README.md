@@ -250,6 +250,7 @@ The following links are relevant to all the background material that is relevant
 creation of this project.
 
 ## Custom Views
+- [View documentation](https://developer.android.com/reference/android/view/View)
 - [Video on Android Custom Views](https://vimeo.com/242155617)
 - [Book on Android Custom Views, Drawables, LayoutManagers, Scrolling](https://play.google.com/books/reader?id=dnr_CgAAQBAJ&printsec=frontcover&output=reader&hl=en&pg=GBS.PT400)
 - [Tutorial on creating custom views](https://www.raywenderlich.com/175645/android-custom-view-tutorial)

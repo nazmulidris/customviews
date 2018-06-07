@@ -48,6 +48,11 @@
         android:id="@+id/view_tally_counter"
         android:layout_below="@id/button_increment_counter"
         android:layout_margin="@dimen/default_margin"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="@dimen/tally_counter_padding_bottom"
+        android:paddingLeft="@dimen/tally_counter_padding_left"
+        android:paddingRight="@dimen/tally_counter_padding_right"
+        android:paddingTop="@dimen/tally_counter_padding_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

@@ -106,6 +106,41 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                               R.color.colorAccent)
     )
 
+    // Measure
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        // Max text height and width
+        val maxTextWidth = helpers.textPaint.measureText(generateTextContent())
+        val maxTextHeight = with(helpers.textPaint.fontMetrics) {
+            -top + bottom
+        }
+        // Max content height and width (including padding), views don't deal /w margin
+        val desiredWidth = maxTextWidth + paddingLeft + paddingRight
+        val desiredHeight = maxTextHeight + paddingTop + paddingBottom
+
+        // Note in the real world use View.resolveSize() instead of reconcileSize()
+        val measuredWidth = reconcileSize(desiredWidth.toInt(), widthMeasureSpec)
+        val measuredHeight = reconcileSize(desiredHeight.toInt(), heightMeasureSpec)
+
+        // Set the final measured dimensions
+        setMeasuredDimension(measuredWidth, measuredHeight)
+    }
+
+    /**
+     * Implementation copied from [View.resolveSizeAndState]. In the real world, please don't call
+     * this method, instead call [View.resolveSize].
+     */
+    private fun reconcileSize(size: Int, measureSpec: Int): Int {
+        val measureSpecMode = View.MeasureSpec.getMode(measureSpec)
+        val measureSpecSize = View.MeasureSpec.getSize(measureSpec)
+        return when (measureSpecMode) {
+            View.MeasureSpec.EXACTLY -> measureSpecSize
+            View.MeasureSpec.UNSPECIFIED -> size
+            View.MeasureSpec.AT_MOST -> if (measureSpecSize < size) measureSpecSize else size
+            else -> size
+        }
+    }
+
     // Draw
 
     override fun onDraw(canvas: Canvas) {
@@ -113,8 +148,8 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         val height = canvas.height
 
         val fontMetrics = helpers.textPaint.fontMetrics
-        //val fontHeight = fontMetrics.descent - fontMetrics.ascent
-        val baselineY = height / 2f + (-fontMetrics.ascent / 2) - (fontMetrics.descent / 2)
+        //val fontHeight = fontMetrics.top - fontMetrics.bottom
+        val baselineY = height / 2f + (-fontMetrics.top / 2) - (fontMetrics.bottom / 2)
 
         // Draw filled rectangle (background)
         with(helpers) {
@@ -148,11 +183,10 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
         // Draw text
         with(helpers) {
-            val content = "❤ ${String.format(Locale.getDefault(), "%03d", count)}"
             val centerX = width * 0.5f
-            val textWidth = textPaint.measureText(content)
+            val textWidth = textPaint.measureText(generateTextContent())
             val textX = centerX - textWidth * 0.5f
-            canvas.drawText(content, textX, baselineY, textPaint)
+            canvas.drawText(generateTextContent(), textX, baselineY, textPaint)
         }
 
     }
@@ -160,13 +194,11 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     // Implement TallyCounter interface
 
     override fun reset() {
-        count = 0
-        invalidate()
+        setCount(0)
     }
 
     override fun increment() {
-        count++
-        invalidate()
+        setCount(count + 1)
     }
 
     override fun getCount(): Int {
@@ -175,6 +207,11 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
     override fun setCount(value: Int) {
         count = value
+        invalidate()
+    }
+
+    private fun generateTextContent(): String {
+        return "❤ ${String.format(Locale.getDefault(), "%03d", count)}"
     }
 
 }

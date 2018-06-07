@@ -25,4 +25,8 @@
     <dimen name="tally_counter_stroke_width">4dp</dimen>
     <dimen name="tally_counter_text_size">64sp</dimen>
     <dimen name="tally_counter_corner_radius">8dp</dimen>
+    <dimen name="tally_counter_padding_top">8dp</dimen>
+    <dimen name="tally_counter_padding_left">16dp</dimen>
+    <dimen name="tally_counter_padding_right">16dp</dimen>
+    <dimen name="tally_counter_padding_bottom">8dp</dimen>
 </resources>
