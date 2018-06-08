@@ -51,7 +51,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  defStyleAttr: Int = 0) :
         View(context, attrs, defStyleAttr), AnkoLogger, TallyCounter {
 
-    // Constructor and properties
+    // Properties, paint helpers, and loaded dimensions
 
     private val dimens = Dimens(resources, context)
     private val helpers = Helpers(dimens)
