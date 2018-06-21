@@ -160,8 +160,11 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         // Draw text baseline & vertical center of the Canvas
         with(helpers) {
 
-            // Vertical center line
-            //canvas.drawLine(0F, (height / 2).toFloat(), width.toFloat(), (height / 2).toFloat(), linePaint)
+            // Unbroken vertical center line
+            // canvas.drawLine(0F, (height / 2).toFloat(), width.toFloat(), (height / 2).toFloat(),
+            // linePaint)
+
+            // Dashed vertical center line
             for (x in 1..width step (dimens.strokeWidth * 5).toInt()) {
                 canvas.drawLine(
                         x.toFloat(), (height / 2).toFloat(),
@@ -169,8 +172,10 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                         linePaint)
             }
 
-            // Text baseline line
-            //canvas.drawLine(0F, baselineY, width.toFloat(), baselineY, linePaint)
+            // Unbroken text-baseline line
+            // canvas.drawLine(0F, baselineY, width.toFloat(), baselineY, linePaint)
+
+            // Dashed text-baseline line
             for (x in 1..width step (dimens.strokeWidth * 3).toInt()) {
                 canvas.drawLine(
                         x.toFloat(), baselineY,
