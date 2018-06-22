@@ -16,8 +16,11 @@
 
 package engineering.uxd.example.customviews
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.AttributeSet
+import android.view.ViewGroup
 
 // todo https://vimeo.com/242155617 (time: 31.48)
 
@@ -27,4 +30,15 @@ class CustomViewGroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_view_group)
     }
+}
+
+class SimpleListItem @JvmOverloads constructor(context: Context,
+                                               attrs: AttributeSet? = null,
+                                               defStyleAttr: Int = 0) :
+        ViewGroup(context, attrs, defStyleAttr) {
+
+    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        TODO("onLayout() needs to be implemented")
+    }
+
 }

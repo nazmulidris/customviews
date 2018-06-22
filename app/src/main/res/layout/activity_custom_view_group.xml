@@ -14,15 +14,39 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/DefaultActivity"
     tools:context="engineering.uxd.example.customviews.CustomViewGroupActivity">
 
-    <TextView
-        android:text="Custom View Group"
-        style="@style/EmptyActivityLabel" />
+    <engineering.uxd.example.customviews.SimpleListItem
+        android:id="@+id/container_viewgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/simple_list_item_padding_top"
+        android:paddingBottom="@dimen/simple_list_item_padding_bottom"
+        android:paddingLeft="@dimen/simple_list_item_padding_left"
+        android:paddingRight="@dimen/simple_list_item_padding_right">
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/simple_list_item_image_margin_left"
+            android:layout_marginRight="@dimen/simple_list_item_image_margin_right" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </engineering.uxd.example.customviews.SimpleListItem>
+
+</LinearLayout>
