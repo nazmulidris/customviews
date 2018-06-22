@@ -44,8 +44,6 @@ class CustomView2Activity : AppCompatActivity() {
     }
 }
 
-// todo https://vimeo.com/242155617 (time: 29.47)
-
 class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  attrs: AttributeSet? = null,
                                                  defStyleAttr: Int = 0) :

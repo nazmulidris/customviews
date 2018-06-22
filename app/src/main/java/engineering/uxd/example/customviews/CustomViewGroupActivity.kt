@@ -19,6 +19,8 @@ package engineering.uxd.example.customviews
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 
+// todo https://vimeo.com/242155617 (time: 31.48)
+
 class CustomViewGroupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
