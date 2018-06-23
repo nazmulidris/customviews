@@ -64,22 +64,25 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         // Actually do the measurement
         performMeasurementOfChildren(widthMS, heightMS)
 
-        // Find out how much space the icon used
+        // Find out how much space the icon used (including margins)
         val iconWidth = icon.widthUsed()
         val iconHeight = icon.heightUsed()
 
-        // Find out how much space the title used
+        // Find out how much space the title used (including margins)
         val titleWidth = title.widthUsed()
         val titleHeight = title.heightUsed()
 
-        // Find out how much space the subtitle used
+        // Find out how much space the subtitle used (including margins)
         val subtitleWidth = subtitle.widthUsed()
         val subtitleHeight = subtitle.heightUsed()
 
         // Find the width taken up by the children and own padding. The ViewGroup
         // is behaving as a View in this case and has to deal w/ it's own padding.
-        val width = paddingLeft + paddingRight + iconWidth + Math.max(titleWidth, subtitleWidth)
-        val height = paddingTop + paddingBottom + iconHeight + titleHeight + subtitleHeight
+        val width = paddingLeft + paddingRight +
+                iconWidth +
+                Math.max(titleWidth, subtitleWidth)
+        val height = paddingTop + paddingBottom +
+                Math.max(iconHeight, titleHeight + subtitleHeight)
 
         // Reconcile the measured dimensions w/ this view's constraints and set the
         // final measured width and height for the composite ViewGroup
@@ -96,15 +99,15 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
                                 widthMS, 0,
                                 heightMS, 0)
 
-        // Measure title
+        // Measure title (by making sure to the icon's margins into account)
         measureChildWithMargins(title,
-                                widthMS, icon.measuredWidth,
+                                widthMS, icon.widthUsed(),
                                 heightMS, 0)
 
-        // Measure subtitle
+        // Measure subtitle (by making sure to take the icon's and title's margins into account)
         measureChildWithMargins(subtitle,
-                                widthMS, icon.measuredWidth,
-                                heightMS, title.measuredHeight)
+                                widthMS, icon.widthUsed(),
+                                heightMS, title.heightUsed())
     }
 
     /** Includes margin and padding. [measuredWidth] only includes padding for the [View]  */
