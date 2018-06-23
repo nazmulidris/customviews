@@ -122,8 +122,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         var x = 0
         var y = 0
 
-        // Icon
-
+        // ICON
         // Calculate the the x and y coordinates of the icon
         x = paddingLeft + icon.mlp().leftMargin
         y = paddingTop + icon.mlp().topMargin
@@ -131,8 +130,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         // Layout the icon
         icon.layout(x, y, x + icon.measuredWidth, y + icon.measuredHeight)
 
-        // Title
-
+        // TITLE
         // Calculate the x, y coordinates of the title:
         // icon's right coordinate + icon's right margin
         x += measuredWidth + icon.mlp().rightMargin
@@ -140,7 +138,10 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         // Add the title's left margin
         x += title.mlp().leftMargin
 
-        // Subtitle
+        TODO("title.layout()")
+
+        // SUBTITLE
+        TODO("subtitle.layout()")
 
     }
 
