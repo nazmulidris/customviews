@@ -43,13 +43,13 @@
         <item name="android:fontFamily">@font/noto_sans</item>
     </style>
 
-    <style name="ToolbarTextAppearance" parent="TextAppearance.AppCompat.Medium">
+    <style name="DefaultFontTextAppearance" parent="TextAppearance.AppCompat.Medium">
         <item name="android:fontFamily">@font/noto_sans</item>
     </style>
 
     <style name="ToolbarStyle">
         <item name="titleTextColor">@color/colorAccent</item>
-        <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
+        <item name="titleTextAppearance">@style/DefaultFontTextAppearance</item>
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
@@ -58,6 +58,24 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerInParent">true</item>
         <item name="android:fontFamily">@font/noto_sans</item>
+    </style>
+
+    <style name="SimpleListItemIcon">
+        <item name="android:layout_width">@dimen/simple_list_item_image_size</item>
+        <item name="android:layout_height">@dimen/simple_list_item_image_size</item>
+        <item name="android:tint">@color/colorAccent</item>
+        <item name="android:layout_marginTop">@dimen/simple_list_item_image_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/simple_list_item_image_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/simple_list_item_image_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/simple_list_item_image_margin_right</item>
+    </style>
+
+    <style name="SimpleListItemTitleTextAppearance" parent="DefaultFontTextAppearance">
+        <item name="android:textSize">@dimen/simple_list_item_title_text_size</item>
+    </style>
+
+    <style name="SimpleListItemSubtitleTextAppearance" parent="DefaultFontTextAppearance">
+        <item name="android:textSize">@dimen/simple_list_item_subtitle_text_size</item>
     </style>
 
 </resources>

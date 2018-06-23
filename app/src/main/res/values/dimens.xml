@@ -36,6 +36,8 @@
     <dimen name="simple_list_item_padding_bottom">4dp</dimen>
 
     <dimen name="simple_list_item_image_size">48dp</dimen>
+    <dimen name="simple_list_item_title_text_size">22dp</dimen>
+    <dimen name="simple_list_item_subtitle_text_size">16dp</dimen>
     <dimen name="simple_list_item_image_margin_top">4dp</dimen>
     <dimen name="simple_list_item_image_margin_bottom">4dp</dimen>
     <dimen name="simple_list_item_image_margin_left">4dp</dimen>
