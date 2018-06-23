@@ -49,13 +49,13 @@ class CustomViewActivity : AppCompatActivity() {
 
         // Attach observers to changes in the LiveData
         stateViewModel.userSelectionState.observe(
-                this,
-                Observer {
-                    with(emotionalFaceView) {
-                        emotion = it ?: 0
-                        triggerClickAnimation()
-                    }
-                })
+            this,
+            Observer {
+                with(emotionalFaceView) {
+                    emotion = it ?: 0
+                    triggerClickAnimation()
+                }
+            })
     }
 
     class StateViewModel : ViewModel() {
@@ -110,7 +110,7 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
 
     init {
         with(context.obtainStyledAttributes(
-                attrs, R.styleable.EmotionalFaceViewStyles, 0, 0)
+            attrs, R.styleable.EmotionalFaceViewStyles, 0, 0)
         ) {
             try {
 
@@ -124,14 +124,14 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
                 boundsColor = getColor(R.styleable.EmotionalFaceViewStyles_boundsColor, boundsColor)
 
                 eyesRoundedRectRadius = getDimension(
-                        R.styleable.EmotionalFaceViewStyles_eyesRoundedRectRadius,
-                        eyesRoundedRectRadius)
+                    R.styleable.EmotionalFaceViewStyles_eyesRoundedRectRadius,
+                    eyesRoundedRectRadius)
                 borderWidth = getDimension(
-                        R.styleable.EmotionalFaceViewStyles_borderWidth,
-                        borderWidth)
+                    R.styleable.EmotionalFaceViewStyles_borderWidth,
+                    borderWidth)
                 boundsWidth = getDimension(
-                        R.styleable.EmotionalFaceViewStyles_boundsWidth,
-                        boundsWidth)
+                    R.styleable.EmotionalFaceViewStyles_boundsWidth,
+                    boundsWidth)
 
 
             } finally {
@@ -170,9 +170,9 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
             strokeWidth = boundsWidth
             alpha = 100
             canvas.drawRect(
-                    0f, 0f,
-                    width.toFloat(), height.toFloat(),
-                    this)
+                0f, 0f,
+                width.toFloat(), height.toFloat(),
+                this)
             alpha = 255
         }
     }
@@ -227,11 +227,11 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
             color = eyesColor
             style = Paint.Style.FILL
             val leftEyeRect = RectF(
-                    size * 0.32f, size * 0.23f,
-                    size * 0.43f, size * 0.5f)
+                size * 0.32f, size * 0.23f,
+                size * 0.43f, size * 0.5f)
             val rightEyeRect = RectF(
-                    size * 0.57f, size * 0.23f,
-                    size * 0.68f, size * 0.5f)
+                size * 0.57f, size * 0.23f,
+                size * 0.68f, size * 0.5f)
             canvas.drawRoundRect(leftEyeRect, eyesRoundedRectRadius, eyesRoundedRectRadius, this)
             canvas.drawRoundRect(rightEyeRect, eyesRoundedRectRadius, eyesRoundedRectRadius, this)
         }
@@ -245,10 +245,10 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
         if (!animators.isRunning)
             with(animators) {
                 playSequentially(
-                        ObjectAnimator.ofFloat(this@EmotionalFaceView,
-                                "borderWidth", borderWidth, borderWidth * 4f),
-                        ObjectAnimator.ofFloat(this@EmotionalFaceView,
-                                "borderWidth", borderWidth * 4f, borderWidth)
+                    ObjectAnimator.ofFloat(this@EmotionalFaceView,
+                                           "borderWidth", borderWidth, borderWidth * 4f),
+                    ObjectAnimator.ofFloat(this@EmotionalFaceView,
+                                           "borderWidth", borderWidth * 4f, borderWidth)
                 )
                 start()
             }

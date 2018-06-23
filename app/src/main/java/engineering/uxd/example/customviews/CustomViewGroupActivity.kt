@@ -86,8 +86,8 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         // Reconcile the measured dimensions w/ this view's constraints and set the
         // final measured width and height for the composite ViewGroup
         setMeasuredDimension(
-                resolveSize(width, widthMS),
-                resolveSize(height, heightMS)
+            resolveSize(width, widthMS),
+            resolveSize(height, heightMS)
         )
 
     }
@@ -148,7 +148,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
             y = paddingTop + icon.topMargin()
             // Layout the icon
             layout(x, y,
-                    x + icon.measuredWidth, y + icon.measuredHeight)
+                   x + icon.measuredWidth, y + icon.measuredHeight)
         }
 
         // Title

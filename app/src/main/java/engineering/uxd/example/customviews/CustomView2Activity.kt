@@ -93,17 +93,17 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     data class Dimens(private val resources: Resources,
                       private val context: Context,
                       val textSize: Float = resources.getDimension(
-                              R.dimen.tally_counter_text_size),
+                          R.dimen.tally_counter_text_size),
                       val strokeWidth: Float = resources.getDimension(
-                              R.dimen.tally_counter_stroke_width),
+                          R.dimen.tally_counter_stroke_width),
                       val cornerRadius: Float = resources.getDimension(
-                              R.dimen.tally_counter_corner_radius),
+                          R.dimen.tally_counter_corner_radius),
                       val backgroundColor: Int = ContextCompat.getColor(context,
-                              R.color.colorPrimaryDark),
+                                                                        R.color.colorPrimaryDark),
                       val lineColor: Int = ContextCompat.getColor(context,
-                              R.color.colorPrimary),
+                                                                  R.color.colorPrimary),
                       val textColor: Int = ContextCompat.getColor(context,
-                              R.color.colorAccent)
+                                                                  R.color.colorAccent)
     )
 
     // Measure
@@ -154,7 +154,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         with(helpers) {
             backgroundRect.set(0f, 0f, width.toFloat(), height.toFloat())
             canvas.drawRoundRect(
-                    backgroundRect, dimens.cornerRadius, dimens.cornerRadius, backgroundPaint)
+                backgroundRect, dimens.cornerRadius, dimens.cornerRadius, backgroundPaint)
         }
 
         // Draw text baseline & vertical center of the Canvas
@@ -167,9 +167,9 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             // Dashed vertical center line
             for (x in 1..width step (dimens.strokeWidth * 5).toInt()) {
                 canvas.drawLine(
-                        x.toFloat(), (height / 2).toFloat(),
-                        x + dimens.strokeWidth, (height / 2).toFloat(),
-                        linePaint)
+                    x.toFloat(), (height / 2).toFloat(),
+                    x + dimens.strokeWidth, (height / 2).toFloat(),
+                    linePaint)
             }
 
             // Unbroken text-baseline line
@@ -178,9 +178,9 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             // Dashed text-baseline line
             for (x in 1..width step (dimens.strokeWidth * 3).toInt()) {
                 canvas.drawLine(
-                        x.toFloat(), baselineY,
-                        x + dimens.strokeWidth, baselineY,
-                        linePaint)
+                    x.toFloat(), baselineY,
+                    x + dimens.strokeWidth, baselineY,
+                    linePaint)
             }
 
         }
