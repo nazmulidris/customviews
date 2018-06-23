@@ -39,7 +39,8 @@ class CustomViewGroupActivity : AppCompatActivity() {
 class SimpleListItem @JvmOverloads constructor(context: Context,
                                                attrs: AttributeSet? = null,
                                                defStyleAttr: Int = 0) :
-        ViewGroup(context, attrs, defStyleAttr), AnkoLogger {
+        ViewGroup(context, attrs, defStyleAttr),
+        AnkoLogger {
 
     // Make sure to use MarginLayoutParams (to preserve margin values)
 
@@ -77,7 +78,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         val subtitleWidth = subtitle.widthUsed()
         val subtitleHeight = subtitle.heightUsed()
 
-        // Find the width take by the children and padding since this ViewGroup
+        // Find the width taken up by the children and own padding. The ViewGroup
         // is behaving as a View in this case and has to deal w/ it's own padding.
         val width = paddingLeft + paddingRight + iconWidth + Math.max(titleWidth, subtitleWidth)
         val height = paddingTop + paddingBottom + iconHeight + titleHeight + subtitleHeight
@@ -110,33 +111,59 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         measureChildWithMargins(subtitle, widthMS, widthUsed, heightMS, heightUsed)
     }
 
-    private fun View.widthUsed(): Int = measuredWidth + with(mlp()) { leftMargin + rightMargin }
+    /** Includes margin and padding. [measuredWidth] only includes padding for the [View]  */
+    private fun View.widthUsed(): Int = measuredWidth + leftMargin() + rightMargin()
 
-    private fun View.heightUsed(): Int = measuredHeight + with(mlp()) { topMargin + bottomMargin }
+    /** Includes margin and padding. [getMeasuredHeight] only includes padding for the [View]  */
+    private fun View.heightUsed(): Int = measuredHeight + topMargin() + bottomMargin()
 
-    private fun View.mlp(): MarginLayoutParams = layoutParams as MarginLayoutParams
+    private fun View.marginLayoutParams(): MarginLayoutParams = layoutParams as MarginLayoutParams
+    private fun View.leftMargin(): Int = marginLayoutParams().leftMargin
+    private fun View.rightMargin(): Int = marginLayoutParams().rightMargin
+    private fun View.topMargin(): Int = marginLayoutParams().topMargin
+    private fun View.bottomMargin(): Int = marginLayoutParams().bottomMargin
 
     // Layout
 
+    val coord = Coord()
+
+    data class Coord(var x: Int = 0, var y: Int = 0) {
+        fun reset() {
+            x = 0
+            y = 0
+        }
+    }
+
+    /**
+     * Note that [View.getMeasuredWidth] does not include margins (but does include padding).
+     * This is why the [leftMargin], [rightMargin], [topMargin], and [bottomMargin] extension
+     * functions are used extensively in this method.
+     */
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        var x = 0
-        var y = 0
+        // Icon
+        with(coord) {
+            reset()
+            // Calculate the the x and y coordinates of the icon
+            x = paddingLeft + icon.leftMargin()
+            y = paddingTop + icon.topMargin()
+            // Layout the icon
+            layout(x, y,
+                    x + icon.measuredWidth, y + icon.measuredHeight)
+        }
 
-        // ICON
-        // Calculate the the x and y coordinates of the icon
-        x = paddingLeft + icon.mlp().leftMargin
-        y = paddingTop + icon.mlp().topMargin
-
-        // Layout the icon
-        icon.layout(x, y, x + icon.measuredWidth, y + icon.measuredHeight)
-
-        // TITLE
-        // Calculate the x, y coordinates of the title:
-        // icon's right coordinate + icon's right margin
-        x += measuredWidth + icon.mlp().rightMargin
+        // Title
+        with(coord) {
+            reset()
+            // Calculate the x coordinate of the title:
+            // icon's right coordinate + icon's right margin + title's left margin
+            x += paddingLeft + icon.leftMargin() + icon.measuredWidth + icon.rightMargin() + title.leftMargin()
+            // Calculate the y coordinate of the title:
+            // this ViewGroup's top padding + tile's top margin
+            y = paddingTop + title.topMargin()
+        }
 
         // Add the title's left margin
-        x += title.mlp().leftMargin
+        x += title.leftMargin()
 
         TODO("title.layout()")
 

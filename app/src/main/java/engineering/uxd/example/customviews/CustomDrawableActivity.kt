@@ -49,7 +49,8 @@ data class Config(val text_content: String = "Hello World!",
                   val bg_paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
                   val bg_color: Int = 0xABABAB92.toInt())
 
-class SimpleTextDrawable : Drawable(), AnkoLogger {
+class SimpleTextDrawable : Drawable(),
+        AnkoLogger {
 
     val config = Config()
 

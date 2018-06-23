@@ -47,7 +47,9 @@ class CustomView2Activity : AppCompatActivity() {
 class TallyCounterView @JvmOverloads constructor(context: Context,
                                                  attrs: AttributeSet? = null,
                                                  defStyleAttr: Int = 0) :
-        View(context, attrs, defStyleAttr), AnkoLogger, TallyCounter {
+        View(context, attrs, defStyleAttr),
+        AnkoLogger,
+        TallyCounter {
 
     // Properties, paint helpers, and loaded dimensions
 
