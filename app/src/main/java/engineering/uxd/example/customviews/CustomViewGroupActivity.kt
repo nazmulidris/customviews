@@ -25,8 +25,6 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_custom_view_group.view.*
 import org.jetbrains.anko.AnkoLogger
 
-// todo https://vimeo.com/242155617 (time: 31.48)
-
 class CustomViewGroupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,9 +123,9 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
 
     // Layout
 
-    val coord = Coord()
+    val coord = XYCoord()
 
-    data class Coord(var x: Int = 0, var y: Int = 0) {
+    data class XYCoord(var x: Int = 0, var y: Int = 0) {
         fun reset() {
             x = 0
             y = 0
@@ -143,12 +141,14 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         // Icon
         with(coord) {
             reset()
-            // Calculate the the x and y coordinates of the icon
-            x = paddingLeft + icon.leftMargin()
-            y = paddingTop + icon.topMargin()
-            // Layout the icon
-            layout(x, y,
-                   x + icon.measuredWidth, y + icon.measuredHeight)
+            icon.let {
+                // Calculate the the x and y coordinates of the icon
+                x = paddingLeft + it.leftMargin()
+                y = paddingTop + it.topMargin()
+                // Layout the icon
+                it.layout(x, y,
+                          x + it.measuredWidth, y + it.measuredHeight)
+            }
         }
 
         // Title
@@ -156,19 +156,28 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
             reset()
             // Calculate the x coordinate of the title:
             // icon's right coordinate + icon's right margin + title's left margin
-            x += paddingLeft + icon.leftMargin() + icon.measuredWidth + icon.rightMargin() + title.leftMargin()
+            x = paddingLeft +
+                    with(icon) { leftMargin() + measuredWidth + rightMargin() } +
+                    title.leftMargin()
             // Calculate the y coordinate of the title:
             // this ViewGroup's top padding + tile's top margin
             y = paddingTop + title.topMargin()
+            // Layout the title
+            title.layout(x, y,
+                         x + title.measuredWidth, y + title.measuredHeight)
         }
 
-        // Add the title's left margin
-        x += title.leftMargin()
-
-        TODO("title.layout()")
-
-        // SUBTITLE
-        TODO("subtitle.layout()")
+        // Subtitle
+        with(coord) {
+            // The subtitle has the same x coordinate as the title, so don't reset
+            // Calculate the y coordinate of the title:
+            // title's bottom coordinate + title's bottom margin + subtitle's top margin
+            y += title.measuredHeight + title.bottomMargin() + subtitle.topMargin()
+            // Layout the subtitle
+            subtitle.layout(
+                x, y,
+                x + subtitle.measuredWidth, y + subtitle.measuredHeight)
+        }
 
     }
 
