@@ -30,12 +30,15 @@
     <dimen name="tally_counter_padding_right">16dp</dimen>
     <dimen name="tally_counter_padding_bottom">8dp</dimen>
 
-    <dimen name="simple_list_item_padding_top">8dp</dimen>
-    <dimen name="simple_list_item_padding_left">16dp</dimen>
-    <dimen name="simple_list_item_padding_right">16dp</dimen>
-    <dimen name="simple_list_item_padding_bottom">8dp</dimen>
+    <dimen name="simple_list_item_padding_top">4dp</dimen>
+    <dimen name="simple_list_item_padding_left">4dp</dimen>
+    <dimen name="simple_list_item_padding_right">4dp</dimen>
+    <dimen name="simple_list_item_padding_bottom">4dp</dimen>
 
-    <dimen name="simple_list_item_image_margin_left">8dp</dimen>
+    <dimen name="simple_list_item_image_size">48dp</dimen>
+    <dimen name="simple_list_item_image_margin_top">4dp</dimen>
+    <dimen name="simple_list_item_image_margin_bottom">4dp</dimen>
+    <dimen name="simple_list_item_image_margin_left">4dp</dimen>
     <dimen name="simple_list_item_image_margin_right">16dp</dimen>
 
 </resources>

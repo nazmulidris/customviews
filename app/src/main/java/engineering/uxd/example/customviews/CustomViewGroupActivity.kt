@@ -91,22 +91,20 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
     }
 
     private fun performMeasurementOfChildren(widthMS: Int, heightMS: Int) {
-        // Variables to store width and height consumed thus far
-        var widthUsed = 0
-        var heightUsed = 0
-
         // Measure icon
-        measureChildWithMargins(icon, widthMS, widthUsed, heightMS, heightUsed)
-
-        // Figure out how much width and height the icon used
-        widthUsed = icon.widthUsed()
+        measureChildWithMargins(icon,
+                                widthMS, 0,
+                                heightMS, 0)
 
         // Measure title
-        measureChildWithMargins(title, widthMS, widthUsed, heightMS, heightUsed)
-        heightUsed = title.measuredHeight
+        measureChildWithMargins(title,
+                                widthMS, icon.measuredWidth,
+                                heightMS, 0)
 
         // Measure subtitle
-        measureChildWithMargins(subtitle, widthMS, widthUsed, heightMS, heightUsed)
+        measureChildWithMargins(subtitle,
+                                widthMS, icon.measuredWidth,
+                                heightMS, title.measuredHeight)
     }
 
     /** Includes margin and padding. [measuredWidth] only includes padding for the [View]  */

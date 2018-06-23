@@ -33,10 +33,12 @@
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/simple_list_item_image_size"
+            android:layout_height="@dimen/simple_list_item_image_size"
             app:srcCompat="@drawable/ic_account_circle_black_24dp"
             android:tint="@color/colorAccent"
+            android:layout_marginTop="@dimen/simple_list_item_image_margin_top"
+            android:layout_marginBottom="@dimen/simple_list_item_image_margin_bottom"
             android:layout_marginLeft="@dimen/simple_list_item_image_margin_left"
             android:layout_marginRight="@dimen/simple_list_item_image_margin_right" />
 
@@ -44,13 +46,15 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title line text" />
+            android:text="Title line text"
+            style="@style/ToolbarTextAppearance" />
 
         <TextView
             android:id="@+id/subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Subtitle line text" />
+            android:text="Subtitle line text"
+            style="@style/ToolbarTextAppearance" />
 
     </engineering.uxd.example.customviews.SimpleListItem>
 
