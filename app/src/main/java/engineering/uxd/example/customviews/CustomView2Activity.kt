@@ -93,11 +93,11 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     data class Dimens(private val resources: Resources,
                       private val context: Context,
                       val textSize: Float = resources.getDimension(
-                          R.dimen.tally_counter_text_size),
+                              R.dimen.tally_counter_text_size),
                       val strokeWidth: Float = resources.getDimension(
-                          R.dimen.tally_counter_stroke_width),
+                              R.dimen.tally_counter_stroke_width),
                       val cornerRadius: Float = resources.getDimension(
-                          R.dimen.tally_counter_corner_radius),
+                              R.dimen.tally_counter_corner_radius),
                       val backgroundColor: Int = ContextCompat.getColor(context,
                                                                         R.color.colorPrimaryDark),
                       val lineColor: Int = ContextCompat.getColor(context,
@@ -114,12 +114,12 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         val maxTextHeight = with(helpers.textPaint.fontMetrics) { Math.abs(top) + Math.abs(bottom) }
 
         // Max content height and width (including padding), views don't deal /w margin
-        val desiredWidth = maxTextWidth + paddingLeft + paddingRight
-        val desiredHeight = maxTextHeight + paddingTop + paddingBottom
+        val desiredWidth: Int = (maxTextWidth + paddingLeft + paddingRight).toInt()
+        val desiredHeight: Int = (maxTextHeight + paddingTop + paddingBottom).toInt()
 
         // Note in the real world use View.resolveSize() instead of reconcileSize()
-        val measuredWidth = reconcileSize(desiredWidth.toInt(), widthMeasureSpec)
-        val measuredHeight = reconcileSize(desiredHeight.toInt(), heightMeasureSpec)
+        val measuredWidth = reconcileSize(desiredWidth, widthMeasureSpec)
+        val measuredHeight = reconcileSize(desiredHeight, heightMeasureSpec)
 
         // Set the final measured dimensions
         setMeasuredDimension(measuredWidth, measuredHeight)
@@ -154,7 +154,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         with(helpers) {
             backgroundRect.set(0f, 0f, width.toFloat(), height.toFloat())
             canvas.drawRoundRect(
-                backgroundRect, dimens.cornerRadius, dimens.cornerRadius, backgroundPaint)
+                    backgroundRect, dimens.cornerRadius, dimens.cornerRadius, backgroundPaint)
         }
 
         // Draw text baseline & vertical center of the Canvas
@@ -167,9 +167,9 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             // Dashed vertical center line
             for (x in 1..width step (dimens.strokeWidth * 5).toInt()) {
                 canvas.drawLine(
-                    x.toFloat(), (height / 2).toFloat(),
-                    x + dimens.strokeWidth, (height / 2).toFloat(),
-                    linePaint)
+                        x.toFloat(), (height / 2).toFloat(),
+                        x + dimens.strokeWidth, (height / 2).toFloat(),
+                        linePaint)
             }
 
             // Unbroken text-baseline line
@@ -178,9 +178,9 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             // Dashed text-baseline line
             for (x in 1..width step (dimens.strokeWidth * 3).toInt()) {
                 canvas.drawLine(
-                    x.toFloat(), baselineY,
-                    x + dimens.strokeWidth, baselineY,
-                    linePaint)
+                        x.toFloat(), baselineY,
+                        x + dimens.strokeWidth, baselineY,
+                        linePaint)
             }
 
         }
