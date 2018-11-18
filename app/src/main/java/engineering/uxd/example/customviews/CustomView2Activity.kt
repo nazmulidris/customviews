@@ -144,7 +144,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         return when (measureSpecMode) {
             View.MeasureSpec.EXACTLY -> measureSpecSize
             View.MeasureSpec.UNSPECIFIED -> size
-            View.MeasureSpec.AT_MOST -> if (measureSpecSize < size) measureSpecSize else size
+            View.MeasureSpec.AT_MOST -> if (size > measureSpecSize) measureSpecSize else size
             else -> size
         }
     }
