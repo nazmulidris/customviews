@@ -51,10 +51,11 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         AnkoLogger,
         TallyCounter {
 
-    // Properties, paint helpers, and loaded dimensions
+    // Properties, paint helpers, and loaded dimensions.
 
     private val dimens = Dimens(resources, context)
     private val helpers = Helpers(dimens)
+    private val desiredSize = DesiredSize(helpers, this)
     private var count = 0
 
     data class Helpers(
@@ -67,19 +68,19 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
         init {
 
-            // Background paint helper
+            // Background paint helper.
             with(backgroundPaint) {
                 color = dimens.backgroundColor
             }
 
-            // Line paint helper
+            // Line paint helper.
             with(linePaint) {
                 color = dimens.lineColor
                 strokeWidth = dimens.strokeWidth
                 info { "strokeWidth (px) = ${strokeWidth}" }
             }
 
-            // Text paint helper
+            // Text paint helper.
             with(textPaint) {
                 color = dimens.textColor
                 textSize = dimens.textSize
@@ -106,22 +107,30 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                                                                   R.color.colorAccent)
     )
 
-    // Measure
+    inner class DesiredSize(helpers: Helpers,
+                            view: TallyCounterView) {
+        val width: Int
+        val height: Int
+
+        init {
+            // Max text height and width.
+            val maxTextWidth = helpers.textPaint.measureText(view.generateTextContent())
+            val maxTextHeight = with(helpers.textPaint.fontMetrics) {
+                java.lang.Math.abs(top) + java.lang.Math.abs(bottom)
+            }
+            // Max content height and width (including padding), views don't deal /w margin.
+            width = (maxTextWidth + with(view) { paddingLeft + paddingRight }).toInt()
+            height = (maxTextHeight + with(view) { paddingTop + paddingBottom }).toInt()
+        }
+    }
+
+    // Measure.
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        // Max text height and width
-        val maxTextWidth = helpers.textPaint.measureText(generateTextContent())
-        val maxTextHeight = with(helpers.textPaint.fontMetrics) { Math.abs(top) + Math.abs(bottom) }
-
-        // Max content height and width (including padding), views don't deal /w margin
-        val desiredWidth: Int = (maxTextWidth + paddingLeft + paddingRight).toInt()
-        val desiredHeight: Int = (maxTextHeight + paddingTop + paddingBottom).toInt()
-
-        // Note in the real world use View.resolveSize() instead of reconcileSize()
-        val measuredWidth = reconcileSize(desiredWidth, widthMeasureSpec)
-        val measuredHeight = reconcileSize(desiredHeight, heightMeasureSpec)
-
-        // Set the final measured dimensions
+        // Note in the real world use View.resolveSize() instead of reconcileSize().
+        val measuredWidth = reconcileSize(desiredSize.width, widthMeasureSpec)
+        val measuredHeight = reconcileSize(desiredSize.height, heightMeasureSpec)
+        // Set the final measured dimensions.
         setMeasuredDimension(measuredWidth, measuredHeight)
     }
 
@@ -140,31 +149,29 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         }
     }
 
-    // Draw
+    // Draw.
 
     override fun onDraw(canvas: Canvas) {
-        val width = canvas.width
-        val height = canvas.height
-
         val fontMetrics = helpers.textPaint.fontMetrics
-        //val fontHeight = fontMetrics.top - fontMetrics.bottom
-        val baselineY = height / 2f + (-fontMetrics.top / 2) - (fontMetrics.bottom / 2)
+        val baselineY = height / 2f +
+                (Math.abs(fontMetrics.top) / 2) -
+                (Math.abs(fontMetrics.bottom) / 2)
 
-        // Draw filled rectangle (background)
+        // Draw filled rectangle (background).
         with(helpers) {
             backgroundRect.set(0f, 0f, width.toFloat(), height.toFloat())
             canvas.drawRoundRect(
                     backgroundRect, dimens.cornerRadius, dimens.cornerRadius, backgroundPaint)
         }
 
-        // Draw text baseline & vertical center of the Canvas
+        // Draw text baseline & vertical center of the Canvas.
         with(helpers) {
 
-            // Unbroken vertical center line
-            // canvas.drawLine(0F, (height / 2).toFloat(), width.toFloat(), (height / 2).toFloat(),
-            // linePaint)
+            // Unbroken vertical center line.
+            // canvas.drawLine(
+            //   0F, (height / 2).toFloat(), width.toFloat(), (height / 2).toFloat(), linePaint)
 
-            // Dashed vertical center line
+            // Dashed vertical center line.
             for (x in 1..width step (dimens.strokeWidth * 5).toInt()) {
                 canvas.drawLine(
                         x.toFloat(), (height / 2).toFloat(),
@@ -172,10 +179,10 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                         linePaint)
             }
 
-            // Unbroken text-baseline line
+            // Unbroken text-baseline line.
             // canvas.drawLine(0F, baselineY, width.toFloat(), baselineY, linePaint)
 
-            // Dashed text-baseline line
+            // Dashed text-baseline line.
             for (x in 1..width step (dimens.strokeWidth * 3).toInt()) {
                 canvas.drawLine(
                         x.toFloat(), baselineY,
@@ -185,7 +192,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
         }
 
-        // Draw text
+        // Draw text.
         with(helpers) {
             val centerX = width * 0.5f
             val textWidth = textPaint.measureText(generateTextContent())
@@ -195,7 +202,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
     }
 
-    // Implement TallyCounter interface
+    // Implement TallyCounter interface.
 
     override fun reset() {
         setCount(0)
@@ -220,7 +227,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
 
 }
 
-// TallyCounter interface
+// TallyCounter interface.
 
 interface TallyCounter {
     fun reset()
