@@ -111,7 +111,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         // Max text height and width
         val maxTextWidth = helpers.textPaint.measureText(generateTextContent())
-        val maxTextHeight = with(helpers.textPaint.fontMetrics) { -top + bottom }
+        val maxTextHeight = with(helpers.textPaint.fontMetrics) { Math.abs(top) + Math.abs(bottom) }
 
         // Max content height and width (including padding), views don't deal /w margin
         val desiredWidth = maxTextWidth + paddingLeft + paddingRight
