@@ -107,7 +107,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                                                                   R.color.colorAccent)
     )
 
-    inner class DesiredSize(helpers: Helpers,
+    class DesiredSize(helpers: Helpers,
                             view: TallyCounterView) {
         val width: Int
         val height: Int
