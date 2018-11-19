@@ -110,28 +110,28 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
 
     init {
         with(context.obtainStyledAttributes(
-            attrs, R.styleable.EmotionalFaceViewStyles, 0, 0)
+                attrs, R.styleable.EmotionalFaceView, 0, 0)
         ) {
             try {
 
-                emotion = getInt(R.styleable.EmotionalFaceViewStyles_emotion, emotion)
+                emotion = getInt(R.styleable.EmotionalFaceView_emotion, emotion)
 
-                faceColor = getColor(R.styleable.EmotionalFaceViewStyles_faceColor, faceColor)
-                mouthColor = getColor(R.styleable.EmotionalFaceViewStyles_mouthColor, mouthColor)
-                eyesColor = getColor(R.styleable.EmotionalFaceViewStyles_eyesColor, eyesColor)
+                faceColor = getColor(R.styleable.EmotionalFaceView_faceColor, faceColor)
+                mouthColor = getColor(R.styleable.EmotionalFaceView_mouthColor, mouthColor)
+                eyesColor = getColor(R.styleable.EmotionalFaceView_eyesColor, eyesColor)
 
-                borderColor = getColor(R.styleable.EmotionalFaceViewStyles_borderColor, borderColor)
-                boundsColor = getColor(R.styleable.EmotionalFaceViewStyles_boundsColor, boundsColor)
+                borderColor = getColor(R.styleable.EmotionalFaceView_borderColor, borderColor)
+                boundsColor = getColor(R.styleable.EmotionalFaceView_boundsColor, boundsColor)
 
                 eyesRoundedRectRadius = getDimension(
-                    R.styleable.EmotionalFaceViewStyles_eyesRoundedRectRadius,
-                    eyesRoundedRectRadius)
+                        R.styleable.EmotionalFaceView_eyesRoundedRectRadius,
+                        eyesRoundedRectRadius)
                 borderWidth = getDimension(
-                    R.styleable.EmotionalFaceViewStyles_borderWidth,
-                    borderWidth)
+                        R.styleable.EmotionalFaceView_borderWidth,
+                        borderWidth)
                 boundsWidth = getDimension(
-                    R.styleable.EmotionalFaceViewStyles_boundsWidth,
-                    boundsWidth)
+                        R.styleable.EmotionalFaceView_boundsWidth,
+                        boundsWidth)
 
 
             } finally {

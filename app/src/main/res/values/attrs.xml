@@ -16,7 +16,7 @@
 
 <resources>
 
-    <declare-styleable name="EmotionalFaceViewStyles">
+    <declare-styleable name="EmotionalFaceView">
 
         <attr name="faceColor" format="color" />
         <attr name="eyesColor" format="color" />
