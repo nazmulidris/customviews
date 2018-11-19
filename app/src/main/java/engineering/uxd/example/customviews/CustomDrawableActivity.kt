@@ -47,20 +47,18 @@ data class Config(val text_content: String = "Hello World!",
                   val text_paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
                   val text_size: Float = 100f,
                   val bg_paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
-                  val bg_color: Int = 0xABABAB92.toInt())
+                  val bg_color: Int = 0xABABAB92.toInt()){
+    init {
+        text_paint.color = text_color
+        text_paint.textSize = text_size
+        bg_paint.color = bg_color
+    }
+}
 
 class SimpleTextDrawable : Drawable(),
         AnkoLogger {
 
     val config = Config()
-
-    init {
-        with(config) {
-            text_paint.color = text_color
-            text_paint.textSize = text_size
-            bg_paint.color = bg_color
-        }
-    }
 
     override fun getIntrinsicHeight(): Int {
         val height = config.text_paint.textSize.toInt()
