@@ -108,7 +108,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     )
 
     class DesiredSize(helpers: Helpers,
-                            view: TallyCounterView) {
+                      view: TallyCounterView) {
         val width: Int
         val height: Int
 
