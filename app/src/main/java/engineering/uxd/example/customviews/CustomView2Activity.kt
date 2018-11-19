@@ -141,14 +141,14 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
      * Implementation copied from [View.resolveSizeAndState]. In the real world, please don't call
      * this method, instead call [View.resolveSize].
      */
-    private fun reconcileSize(size: Int, measureSpec: Int): Int {
-        val measureSpecMode = View.MeasureSpec.getMode(measureSpec)
-        val measureSpecSize = View.MeasureSpec.getSize(measureSpec)
-        return when (measureSpecMode) {
-            View.MeasureSpec.EXACTLY -> measureSpecSize
-            View.MeasureSpec.UNSPECIFIED -> size
-            View.MeasureSpec.AT_MOST -> if (size > measureSpecSize) measureSpecSize else size
-            else -> size
+    private fun reconcileSize(desiredSize: Int, measureSpec: Int): Int {
+        val msMode = View.MeasureSpec.getMode(measureSpec)
+        val msSize = View.MeasureSpec.getSize(measureSpec)
+        return when (msMode) {
+            View.MeasureSpec.EXACTLY -> msSize
+            View.MeasureSpec.UNSPECIFIED -> desiredSize
+            View.MeasureSpec.AT_MOST -> if (desiredSize > msSize) msSize else desiredSize
+            else -> desiredSize
         }
     }
 
