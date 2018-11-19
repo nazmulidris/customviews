@@ -63,8 +63,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             val backgroundPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val linePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
             val textPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG),
-            val backgroundRect: RectF = RectF()
-    ) : AnkoLogger {
+            val backgroundRect: RectF = RectF()) : AnkoLogger {
 
         init {
 
@@ -87,7 +86,15 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
                 info { "textSize (px) = ${textSize}" }
             }
 
+
         }
+
+        // FontMetrics related functions (derived from the textPaint).
+        fun getMaxTextHeight(): Int =
+                with(textPaint.fontMetrics) { Math.abs(top) + Math.abs(bottom) }.toInt()
+
+        fun getFontTop(): Int = Math.abs(textPaint.fontMetrics.top).toInt()
+        fun getFontBottom(): Int = Math.abs(textPaint.fontMetrics.bottom).toInt()
 
     }
 
@@ -113,14 +120,10 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
         val height: Int
 
         init {
-            // Max text height and width.
-            val maxTextWidth = helpers.textPaint.measureText(view.generateTextContent())
-            val maxTextHeight = with(helpers.textPaint.fontMetrics) {
-                java.lang.Math.abs(top) + java.lang.Math.abs(bottom)
-            }
-            // Max content height and width (including padding), views don't deal /w margin.
-            width = (maxTextWidth + with(view) { paddingLeft + paddingRight }).toInt()
-            height = (maxTextHeight + with(view) { paddingTop + paddingBottom }).toInt()
+            val maxTextWidth = helpers.textPaint.measureText(view.generateTextContent()).toInt()
+            // Set max content height and width (including padding), views don't deal /w margin.
+            width = (maxTextWidth + with(view) { paddingLeft + paddingRight })
+            height = (helpers.getMaxTextHeight() + with(view) { paddingTop + paddingBottom })
         }
     }
 
@@ -152,10 +155,7 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
     // Draw.
 
     override fun onDraw(canvas: Canvas) {
-        val fontMetrics = helpers.textPaint.fontMetrics
-        val baselineY = height / 2f +
-                (Math.abs(fontMetrics.top) / 2) -
-                (Math.abs(fontMetrics.bottom) / 2)
+        val baselineY = height / 2f + with(helpers) { getFontTop() / 2 - getFontBottom() / 2 }
 
         // Draw filled rectangle (background).
         with(helpers) {
