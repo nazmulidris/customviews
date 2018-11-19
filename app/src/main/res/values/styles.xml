@@ -27,9 +27,8 @@
         <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
-    <style name="DefaultActivity">
+    <style name="DefaultActivityStyle">
         <item name="android:layout_margin">@dimen/default_margin</item>
-
     </style>
 
     <style name="LauncherButton" parent="TextAppearance.AppCompat.Medium">
