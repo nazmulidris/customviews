@@ -49,13 +49,13 @@ class CustomViewActivity : AppCompatActivity() {
 
         // Attach observers to changes in the LiveData
         stateViewModel.userSelectionState.observe(
-            this,
-            Observer {
-                with(emotionalFaceView) {
-                    emotion = it ?: 0
-                    triggerClickAnimation()
-                }
-            })
+                this,
+                Observer {
+                    with(emotionalFaceView) {
+                        emotion = it ?: 0
+                        triggerClickAnimation()
+                    }
+                })
     }
 
     class StateViewModel : ViewModel() {
@@ -109,8 +109,7 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
     // Get styling from XML attributes
 
     init {
-        with(context.obtainStyledAttributes(
-                attrs, R.styleable.EmotionalFaceView, 0, 0)
+        with(context.obtainStyledAttributes(attrs, R.styleable.EmotionalFaceView, defStyleAttr, 0)
         ) {
             try {
 
@@ -170,9 +169,9 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
             strokeWidth = boundsWidth
             alpha = 100
             canvas.drawRect(
-                0f, 0f,
-                width.toFloat(), height.toFloat(),
-                this)
+                    0f, 0f,
+                    width.toFloat(), height.toFloat(),
+                    this)
             alpha = 255
         }
     }
@@ -203,12 +202,12 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
             moveTo(size * 0.22f, size * 0.7f)
 
             when (emotion) {
-            // Happy
+                // Happy
                 0 -> {
                     quadTo(size * 0.50f, size * 0.80f, size * 0.78f, size * 0.70f)
                     quadTo(size * 0.50f, size * 0.90f, size * 0.22f, size * 0.70f)
                 }
-            // Sad
+                // Sad
                 1 -> {
                     quadTo(size * 0.50f, size * 0.50f, size * 0.78f, size * 0.70f)
                     quadTo(size * 0.50f, size * 0.60f, size * 0.22f, size * 0.70f)
@@ -227,11 +226,11 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
             color = eyesColor
             style = Paint.Style.FILL
             val leftEyeRect = RectF(
-                size * 0.32f, size * 0.23f,
-                size * 0.43f, size * 0.5f)
+                    size * 0.32f, size * 0.23f,
+                    size * 0.43f, size * 0.5f)
             val rightEyeRect = RectF(
-                size * 0.57f, size * 0.23f,
-                size * 0.68f, size * 0.5f)
+                    size * 0.57f, size * 0.23f,
+                    size * 0.68f, size * 0.5f)
             canvas.drawRoundRect(leftEyeRect, eyesRoundedRectRadius, eyesRoundedRectRadius, this)
             canvas.drawRoundRect(rightEyeRect, eyesRoundedRectRadius, eyesRoundedRectRadius, this)
         }
@@ -245,10 +244,10 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
         if (!animators.isRunning)
             with(animators) {
                 playSequentially(
-                    ObjectAnimator.ofFloat(this@EmotionalFaceView,
-                                           "borderWidth", borderWidth, borderWidth * 4f),
-                    ObjectAnimator.ofFloat(this@EmotionalFaceView,
-                                           "borderWidth", borderWidth * 4f, borderWidth)
+                        ObjectAnimator.ofFloat(this@EmotionalFaceView,
+                                               "borderWidth", borderWidth, borderWidth * 4f),
+                        ObjectAnimator.ofFloat(this@EmotionalFaceView,
+                                               "borderWidth", borderWidth * 4f, borderWidth)
                 )
                 start()
             }
