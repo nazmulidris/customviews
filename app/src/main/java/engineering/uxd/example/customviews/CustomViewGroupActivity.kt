@@ -42,21 +42,15 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
 
     // Make sure to use MarginLayoutParams (to preserve margin values).
 
-    override fun checkLayoutParams(p: LayoutParams): Boolean {
-        return p is MarginLayoutParams
-    }
+    override fun checkLayoutParams(p: LayoutParams) = p is MarginLayoutParams
 
-    override fun generateDefaultLayoutParams(): LayoutParams {
-        return MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-    }
+    override fun generateDefaultLayoutParams() =
+            ViewGroup.MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
 
-    override fun generateLayoutParams(attrs: AttributeSet): LayoutParams {
-        return MarginLayoutParams(context, attrs)
-    }
+    override fun generateLayoutParams(attrs: AttributeSet) =
+            ViewGroup.MarginLayoutParams(context, attrs)
 
-    override fun generateLayoutParams(p: LayoutParams): LayoutParams {
-        return generateDefaultLayoutParams()
-    }
+    override fun generateLayoutParams(p: LayoutParams) = generateDefaultLayoutParams()
 
     // Measure.
 
@@ -87,8 +81,8 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         // Reconcile the measured dimensions w/ this view's constraints and set the
         // final measured width and height for the composite ViewGroup.
         setMeasuredDimension(
-            resolveSize(width, widthMS),
-            resolveSize(height, heightMS)
+                resolveSize(width, widthMS),
+                resolveSize(height, heightMS)
         )
 
     }
@@ -176,8 +170,8 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
             y += title.measuredHeight + title.bottomMargin() + subtitle.topMargin()
             // Layout the subtitle.
             subtitle.layout(
-                x, y,
-                x + subtitle.measuredWidth, y + subtitle.measuredHeight)
+                    x, y,
+                    x + subtitle.measuredWidth, y + subtitle.measuredHeight)
         }
 
     }
