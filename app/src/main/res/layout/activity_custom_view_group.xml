@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:text="Title line text"
             android:textIsSelectable="true"
-            style="@style/SimpleListItemTitleTextAppearance" />
+            android:textAppearance="@style/SimpleListItemTitleTextAppearance" />
 
         <TextView
             android:id="@+id/subtitle"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="Subtitle line text"
             android:textIsSelectable="true"
-            style="@style/SimpleListItemSubtitleTextAppearance" />
+            android:textAppearance="@style/SimpleListItemSubtitleTextAppearance" />
 
     </engineering.uxd.example.customviews.SimpleListItem>
 
