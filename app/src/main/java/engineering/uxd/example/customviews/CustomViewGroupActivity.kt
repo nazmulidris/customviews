@@ -110,7 +110,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
                                 heightMS, title.heightUsed())
     }
 
-    /** Includes margin and padding. [measuredWidth] only includes padding for the [View]  */
+    /** Includes margin and padding. [getMeasuredWidth] only includes padding for the [View]  */
     private fun View.widthUsed(): Int = measuredWidth + leftMargin() + rightMargin()
 
     /** Includes margin and padding. [getMeasuredHeight] only includes padding for the [View]  */
