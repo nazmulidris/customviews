@@ -32,7 +32,7 @@
     </style>
 
     <style name="LauncherButton" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">?colorAccent</item>
         <item name="android:layout_margin">@dimen/launcher_button_margin</item>
         <item name="android:padding">@dimen/launcher_button_padding</item>
         <item name="android:layout_width">match_parent</item>
@@ -47,9 +47,9 @@
     </style>
 
     <style name="ToolbarStyle">
-        <item name="titleTextColor">@color/colorAccent</item>
+        <item name="titleTextColor">?colorAccent</item>
         <item name="titleTextAppearance">@style/DefaultFontTextAppearance</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">?colorPrimary</item>
     </style>
 
     <style name="EmptyActivityLabel" parent="TextAppearance.AppCompat.Large">
@@ -62,7 +62,7 @@
     <style name="SimpleListItemIcon">
         <item name="android:layout_width">@dimen/simple_list_item_image_size</item>
         <item name="android:layout_height">@dimen/simple_list_item_image_size</item>
-        <item name="android:tint">@color/colorAccent</item>
+        <item name="android:tint">?colorAccent</item>
         <item name="android:layout_marginTop">@dimen/simple_list_item_image_margin_top</item>
         <item name="android:layout_marginBottom">@dimen/simple_list_item_image_margin_bottom</item>
         <item name="android:layout_marginLeft">@dimen/simple_list_item_image_margin_left</item>
