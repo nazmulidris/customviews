@@ -40,7 +40,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         ViewGroup(context, attrs, defStyleAttr),
         AnkoLogger {
 
-    // Make sure to use MarginLayoutParams (to preserve margin values)
+    // Make sure to use MarginLayoutParams (to preserve margin values).
 
     override fun checkLayoutParams(p: LayoutParams): Boolean {
         return p is MarginLayoutParams
@@ -58,21 +58,21 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         return generateDefaultLayoutParams()
     }
 
-    // Measure
+    // Measure.
 
     override fun onMeasure(widthMS: Int, heightMS: Int) {
-        // Actually do the measurement
+        // Actually do the measurement.
         performMeasurementOfChildren(widthMS, heightMS)
 
-        // Find out how much space the icon used (including margins)
+        // Find out how much space the icon used (including margins).
         val iconWidth = icon.widthUsed()
         val iconHeight = icon.heightUsed()
 
-        // Find out how much space the title used (including margins)
+        // Find out how much space the title used (including margins).
         val titleWidth = title.widthUsed()
         val titleHeight = title.heightUsed()
 
-        // Find out how much space the subtitle used (including margins)
+        // Find out how much space the subtitle used (including margins).
         val subtitleWidth = subtitle.widthUsed()
         val subtitleHeight = subtitle.heightUsed()
 
@@ -85,7 +85,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
                 Math.max(iconHeight, titleHeight + subtitleHeight)
 
         // Reconcile the measured dimensions w/ this view's constraints and set the
-        // final measured width and height for the composite ViewGroup
+        // final measured width and height for the composite ViewGroup.
         setMeasuredDimension(
             resolveSize(width, widthMS),
             resolveSize(height, heightMS)
@@ -94,26 +94,26 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
     }
 
     private fun performMeasurementOfChildren(widthMS: Int, heightMS: Int) {
-        // Measure icon
+        // Measure icon.
         measureChildWithMargins(icon,
                                 widthMS, 0,
                                 heightMS, 0)
 
-        // Measure title (by making sure to the icon's margins into account)
+        // Measure title (by making sure to the icon's margins into account).
         measureChildWithMargins(title,
                                 widthMS, icon.widthUsed(),
                                 heightMS, 0)
 
-        // Measure subtitle (by making sure to take the icon's and title's margins into account)
+        // Measure subtitle (by making sure to take the icon's and title's margins into account).
         measureChildWithMargins(subtitle,
                                 widthMS, icon.widthUsed(),
                                 heightMS, title.heightUsed())
     }
 
-    /** Includes margin and padding. [getMeasuredWidth] only includes padding for the [View]  */
+    /** Includes margin and padding. [getMeasuredWidth] only includes padding for the [View] */
     private fun View.widthUsed(): Int = measuredWidth + leftMargin() + rightMargin()
 
-    /** Includes margin and padding. [getMeasuredHeight] only includes padding for the [View]  */
+    /** Includes margin and padding. [getMeasuredHeight] only includes padding for the [View] */
     private fun View.heightUsed(): Int = measuredHeight + topMargin() + bottomMargin()
 
     private fun View.marginLayoutParams(): MarginLayoutParams = layoutParams as MarginLayoutParams
@@ -122,7 +122,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
     private fun View.topMargin(): Int = marginLayoutParams().topMargin
     private fun View.bottomMargin(): Int = marginLayoutParams().bottomMargin
 
-    // Layout
+    // Layout.
 
     val coord = XYCoord()
 
@@ -143,10 +143,10 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         with(coord) {
             reset()
             icon.let {
-                // Calculate the the x and y coordinates of the icon
+                // Calculate the the x and y coordinates of the icon.
                 x = paddingLeft + it.leftMargin()
                 y = paddingTop + it.topMargin()
-                // Layout the icon
+                // Layout the icon.
                 it.layout(x, y,
                           x + it.measuredWidth, y + it.measuredHeight)
             }
@@ -156,25 +156,25 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         with(coord) {
             reset()
             // Calculate the x coordinate of the title:
-            // icon's right coordinate + icon's right margin + title's left margin
+            // icon's right coordinate + icon's right margin + title's left margin.
             x = paddingLeft +
                     with(icon) { leftMargin() + measuredWidth + rightMargin() } +
                     title.leftMargin()
             // Calculate the y coordinate of the title:
-            // this ViewGroup's top padding + tile's top margin
+            // this ViewGroup's top padding + tile's top margin.
             y = paddingTop + title.topMargin()
-            // Layout the title
+            // Layout the title.
             title.layout(x, y,
                          x + title.measuredWidth, y + title.measuredHeight)
         }
 
-        // Subtitle
+        // Subtitle.
         with(coord) {
             // The subtitle has the same x coordinate as the title, so don't reset
             // Calculate the y coordinate of the title:
-            // title's bottom coordinate + title's bottom margin + subtitle's top margin
+            // title's bottom coordinate + title's bottom margin + subtitle's top margin.
             y += title.measuredHeight + title.bottomMargin() + subtitle.topMargin()
-            // Layout the subtitle
+            // Layout the subtitle.
             subtitle.layout(
                 x, y,
                 x + subtitle.measuredWidth, y + subtitle.measuredHeight)
