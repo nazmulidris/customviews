@@ -40,7 +40,8 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
         ViewGroup(context, attrs, defStyleAttr),
         AnkoLogger {
 
-    // Make sure to use MarginLayoutParams (to preserve margin values).
+    // Make sure to use MarginLayoutParams (to ensure that any child views that are added
+    // to this ViewGroup can have margins).
 
     override fun checkLayoutParams(p: LayoutParams) = p is MarginLayoutParams
 
@@ -110,7 +111,11 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
     /** Includes margin and padding. [getMeasuredHeight] only includes padding for the [View] */
     private fun View.heightUsed(): Int = measuredHeight + topMargin() + bottomMargin()
 
+    /** The children of this [ViewGroup] can have margins, since [checkLayoutParams],
+     * [generateDefaultLayoutParams], [generateLayoutParams], were overridden in order to
+     * support children having margins.*/
     private fun View.marginLayoutParams(): MarginLayoutParams = layoutParams as MarginLayoutParams
+
     private fun View.leftMargin(): Int = marginLayoutParams().leftMargin
     private fun View.rightMargin(): Int = marginLayoutParams().rightMargin
     private fun View.topMargin(): Int = marginLayoutParams().topMargin
