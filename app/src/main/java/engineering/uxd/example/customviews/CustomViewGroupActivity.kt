@@ -106,20 +106,20 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
     }
 
     /** Includes margin and padding. [getMeasuredWidth] only includes padding for the [View] */
-    private fun View.widthUsed(): Int = measuredWidth + leftMargin() + rightMargin()
+    private fun View.widthUsed(): Int = measuredWidth + marginLeft() + marginRight()
 
     /** Includes margin and padding. [getMeasuredHeight] only includes padding for the [View] */
-    private fun View.heightUsed(): Int = measuredHeight + topMargin() + bottomMargin()
+    private fun View.heightUsed(): Int = measuredHeight + marginTop() + marginBottom()
 
     /** The children of this [ViewGroup] can have margins, since [checkLayoutParams],
      * [generateDefaultLayoutParams], [generateLayoutParams], were overridden in order to
      * support children having margins.*/
     private fun View.marginLayoutParams(): MarginLayoutParams = layoutParams as MarginLayoutParams
 
-    private fun View.leftMargin(): Int = marginLayoutParams().leftMargin
-    private fun View.rightMargin(): Int = marginLayoutParams().rightMargin
-    private fun View.topMargin(): Int = marginLayoutParams().topMargin
-    private fun View.bottomMargin(): Int = marginLayoutParams().bottomMargin
+    private fun View.marginLeft(): Int = marginLayoutParams().leftMargin
+    private fun View.marginRight(): Int = marginLayoutParams().rightMargin
+    private fun View.marginTop(): Int = marginLayoutParams().topMargin
+    private fun View.marginBottom(): Int = marginLayoutParams().bottomMargin
 
     // Layout.
 
@@ -134,7 +134,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
 
     /**
      * Note that [View.getMeasuredWidth] does not include margins (but does include padding).
-     * This is why the [leftMargin], [rightMargin], [topMargin], and [bottomMargin] extension
+     * This is why the [marginLeft], [marginRight], [marginTop], and [marginBottom] extension
      * functions are used extensively in this method.
      */
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -143,8 +143,8 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
             reset()
             icon.let {
                 // Calculate the the x and y coordinates of the icon.
-                x = paddingLeft + it.leftMargin()
-                y = paddingTop + it.topMargin()
+                x = paddingLeft + it.marginLeft()
+                y = paddingTop + it.marginTop()
                 // Layout the icon.
                 it.layout(x, y,
                           x + it.measuredWidth, y + it.measuredHeight)
@@ -157,11 +157,11 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
             // Calculate the x coordinate of the title:
             // icon's right coordinate + icon's right margin + title's left margin.
             x = paddingLeft +
-                    with(icon) { leftMargin() + measuredWidth + rightMargin() } +
-                    title.leftMargin()
+                    with(icon) { marginLeft() + measuredWidth + marginRight() } +
+                    title.marginLeft()
             // Calculate the y coordinate of the title:
             // this ViewGroup's top padding + tile's top margin.
-            y = paddingTop + title.topMargin()
+            y = paddingTop + title.marginTop()
             // Layout the title.
             title.layout(x, y,
                          x + title.measuredWidth, y + title.measuredHeight)
@@ -172,7 +172,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
             // The subtitle has the same x coordinate as the title, so don't reset
             // Calculate the y coordinate of the title:
             // title's bottom coordinate + title's bottom margin + subtitle's top margin.
-            y += title.measuredHeight + title.bottomMargin() + subtitle.topMargin()
+            y += title.measuredHeight + title.marginBottom() + subtitle.marginTop()
             // Layout the subtitle.
             subtitle.layout(
                     x, y,
