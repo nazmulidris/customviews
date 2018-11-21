@@ -50,7 +50,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
     override fun generateLayoutParams(attrs: AttributeSet) =
             ViewGroup.MarginLayoutParams(context, attrs)
 
-    override fun generateLayoutParams(p: LayoutParams) = generateDefaultLayoutParams()
+    override fun generateLayoutParams(p: LayoutParams) = ViewGroup.MarginLayoutParams(p)
 
     // Measure.
 
