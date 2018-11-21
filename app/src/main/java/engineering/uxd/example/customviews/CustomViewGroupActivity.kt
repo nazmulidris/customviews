@@ -169,7 +169,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
 
         // Subtitle.
         with(coord) {
-            // The subtitle has the same x coordinate as the title, so don't reset
+            // The subtitle has the same x coordinate as the title, so don't reset.
             // Calculate the y coordinate of the title:
             // title's bottom coordinate + title's bottom margin + subtitle's top margin.
             y += title.measuredHeight + title.marginBottom() + subtitle.marginTop()
