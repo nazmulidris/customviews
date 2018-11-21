@@ -138,7 +138,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
      * functions are used extensively in this method.
      */
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        // Icon
+        // Icon.
         with(coord) {
             reset()
             icon.let {
@@ -151,7 +151,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
             }
         }
 
-        // Title
+        // Title.
         with(coord) {
             reset()
             // Calculate the x coordinate of the title:
