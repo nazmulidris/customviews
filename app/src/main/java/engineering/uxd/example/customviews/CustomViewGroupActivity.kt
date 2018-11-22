@@ -94,7 +94,7 @@ class SimpleListItem @JvmOverloads constructor(context: Context,
                                 widthMS, 0,
                                 heightMS, 0)
 
-        // Measure title (by making sure to the icon's margins into account).
+        // Measure title (by making sure to take the icon's margins into account).
         measureChildWithMargins(title,
                                 widthMS, icon.widthUsed(),
                                 heightMS, 0)
