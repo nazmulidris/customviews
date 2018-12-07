@@ -25,6 +25,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_custom_view2.*
 import org.jetbrains.anko.AnkoLogger
@@ -200,6 +201,38 @@ class TallyCounterView @JvmOverloads constructor(context: Context,
             canvas.drawText(generateTextContent(), textX, baselineY, textPaint)
         }
 
+    }
+
+    // Touch events.
+    /**
+     * - [Docs](https://developer.android.com/training/gestures/detector).
+     * - [Stackoverflow](https://stackoverflow.com/a/3756619/2085356).
+     * - [Blog post](http://tinyurl.com/yb6gznpo).
+     * @return True means consumed + don't propagate. False means propagate to other views.
+     * However, if `ACTION_DOWN` returns `false` this tells Android not to call this method
+     * with any other motion events until that gesture is cancelled (`ACTION_CANCEL`) or ended
+     * (with `ACTION_UP`).
+     */
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                info { "ACTION_DOWN" }
+                return true
+            }
+            MotionEvent.ACTION_UP -> {
+                info { "ACTION_UP" }
+                return true
+            }
+            MotionEvent.ACTION_MOVE -> {
+                info { "ACTION_MOVE" }
+                return true
+            }
+            MotionEvent.ACTION_CANCEL -> {
+                info { "ACTION_CANCEL" }
+                return true
+            }
+            else -> return true
+        }
     }
 
     // Implement TallyCounter interface.
