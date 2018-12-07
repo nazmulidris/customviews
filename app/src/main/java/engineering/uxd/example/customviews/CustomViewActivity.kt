@@ -25,11 +25,13 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.graphics.*
 import android.os.Bundle
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import android.support.v7.app.AppCompatActivity
 import android.util.AttributeSet
-import android.view.View
+import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_custom_view.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.withAlpha
 
 class CustomViewActivity : AppCompatActivity() {
 
@@ -78,11 +80,11 @@ class CustomViewActivity : AppCompatActivity() {
 class EmotionalFaceView @JvmOverloads constructor(context: Context,
                                                   attrs: AttributeSet? = null,
                                                   defStyleAttr: Int = 0) :
-        View(context, attrs, defStyleAttr) {
+        ImageView(context, attrs, defStyleAttr) {
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    private var faceColor = Color.YELLOW
+    private var faceColor = Color.YELLOW.withAlpha(50)
     private var eyesColor = Color.BLACK
     private var mouthColor = Color.BLACK
 
@@ -137,6 +139,24 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
                 recycle()
             }
         }
+
+        loadAndClipBitmapToCircle()
+    }
+
+    /**
+     * - [Approach 1: Stackoverflow](https://stackoverflow.com/a/15032283/2085356).
+     * - [Approach 1: Repo](https://github.com/vinc3m1/RoundedImageView).
+     * - [Approach 2: Blog post](http://tinyurl.com/ycge73b4).
+     * - [Approach 3: Gist](https://gist.github.com/kaushikgopal/6c25bc9470bbd11fcf7c).
+     */
+    fun loadAndClipBitmapToCircle() {
+        val profilePicBitmap = BitmapFactory.decodeResource(resources,
+                                                            R.drawable.new_profile_pic_tiny)
+        val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources,
+                                                                        profilePicBitmap)
+        roundedBitmapDrawable.cornerRadius = profilePicBitmap.width.toFloat()
+        roundedBitmapDrawable.isCircular = true
+        setImageDrawable(roundedBitmapDrawable)
     }
 
     // Measure functions (set size)
@@ -156,6 +176,7 @@ class EmotionalFaceView @JvmOverloads constructor(context: Context,
 
     override fun onDraw(canvas: Canvas) {
         drawBounds(canvas)
+        super.onDraw(canvas)
         drawFaceBackground(canvas)
         drawEyes(canvas)
         drawMouth(canvas)
